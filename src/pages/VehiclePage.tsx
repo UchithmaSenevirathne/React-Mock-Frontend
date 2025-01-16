@@ -94,7 +94,6 @@ const VehiclePage: React.FC = ()=> {
                             onChange={(e) => setCategory(e.target.value)}
                             className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"
                         >
-                            <option value="">Select Category</option>
                             <option value="landmaster">Land Master</option>
                             <option value="tractor">Tractor</option>
                         </select>
@@ -134,7 +133,6 @@ const VehiclePage: React.FC = ()=> {
                             onChange={(e) => setStatus(e.target.value)}
                             className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"
                         >
-                            <option value="">Select Status</option>
                             <option value="available">Available</option>
                             <option value="outOfService">Out of Service</option>
                         </select>
@@ -176,18 +174,19 @@ const VehiclePage: React.FC = ()=> {
                     <table className="table-auto w-full border border-gray-200 rounded-lg shadow-md">
                     <thead className="bg-gray-100">
                         <tr>
-                            <th className="border px-4 py-2">#</th>
-                            <th className="border px-4 py-2">License Plate No</th>
-                            <th className="border px-4 py-2">Category</th>
-                            <th className="border px-4 py-2">Fuel Type</th>
-                            <th className="border px-4 py-2">Status</th>
-                            <th className="border px-4 py-2">Remarks</th>
-                            <th className="border px-4 py-2">Assigned Staff</th>
-                            <th className="border px-4 py-2">Actions</th>
+                            <th className="border px-4 py-2 text-gray-600">#</th>
+                            <th className="border px-4 py-2 text-gray-600">License Plate No</th>
+                            <th className="border px-4 py-2 text-gray-600">Category</th>
+                            <th className="border px-4 py-2 text-gray-600">Fuel Type</th>
+                            <th className="border px-4 py-2 text-gray-600">Status</th>
+                            <th className="border px-4 py-2 text-gray-600">Remarks</th>
+                            <th className="border px-4 py-2 text-gray-600">Assigned Staff</th>
+                            <th className="border px-4 py-2 text-gray-600">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {vehicles.map((vehicle, index) => (
+                        {vehicles.length > 0 ? (
+                            vehicles.map((vehicle, index) => (
                             <tr key={vehicle.vehicleID} className="border-t border-gray-200 hover:bg-gray-50">
                                 <td className="px-4 py-2 text-gray-700">{index + 1}</td>
                                 <td className="px-4 py-2 text-gray-700">{vehicle.licensePlateNo}</td>
@@ -207,7 +206,14 @@ const VehiclePage: React.FC = ()=> {
                                     </button>
                                 </td>
                             </tr>
-                        ))}
+                        ))
+                        ) : (
+                            <tr>
+                                <td colSpan={9} className="text-center text-gray-500 py-5">
+                                    No Vehicles available
+                                </td>
+                            </tr>
+                        )}
                         </tbody>
                     </table>
                 </div>

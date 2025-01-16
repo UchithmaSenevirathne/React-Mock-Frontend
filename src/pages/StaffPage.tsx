@@ -107,7 +107,6 @@ const StaffPage: React.FC = ()=> {
                                 onChange={(e) => setDesignation(e.target.value)}
                                 className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-60 text-[14px] border border-gray-300 mt-5"
                             >
-                                <option value="">Select Designation</option>
                                 <option value="Manager">Manager</option>
                                 <option value="HR">HR</option>
                                 <option value="Driver">Driver</option>
@@ -207,7 +206,6 @@ const StaffPage: React.FC = ()=> {
                                 onChange={(e) => setRole(e.target.value)}
                                 className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"
                             >
-                                <option value="">Select Role</option>
                                 <option value="Manager">Manager</option>
                                 <option value="Administrative">Administrative</option>
                                 <option value="Scientist">Scientist</option>
@@ -228,26 +226,27 @@ const StaffPage: React.FC = ()=> {
 
                 {/* Staff List */}
                 <div className="bg-white p-6 rounded-lg shadow-md">
-                <h2 className="text-xl font-bold mb-4">Staff List</h2>
                 <div className="overflow-x-auto max-h-[350px] overflow-y-auto">
                     <table className="table-auto w-full border border-gray-200 rounded-lg shadow-md">
                         <thead className="bg-gray-100">
                         <tr>
                             <th className="px-4 py-2 text-left text-gray-600">#</th>
-                            <th className="border px-4 py-2">Full Name</th>
-                            <th className="border px-4 py-2">Designation</th>
-                            <th className="border px-4 py-2">Gender</th>
-                            <th className="border px-4 py-2">Joined Date</th>
-                            <th className="border px-4 py-2">DOB</th>
-                            <th className="border px-4 py-2">Address</th>
-                            <th className="border px-4 py-2">Phone</th>
-                            <th className="border px-4 py-2">Email</th>
-                            <th className="border px-4 py-2">Role</th>
-                            <th className="border px-4 py-2">Actions</th>
+                            <th className="border px-4 py-2 text-gray-600">Full Name</th>
+                            <th className="border px-4 py-2 text-gray-600">Designation</th>
+                            <th className="border px-4 py-2 text-gray-600">Gender</th>
+                            <th className="border px-4 py-2 text-gray-600">Joined Date</th>
+                            <th className="border px-4 py-2 text-gray-600">DOB</th>
+                            <th className="border px-4 py-2 text-gray-600">Address</th>
+                            <th className="border px-4 py-2 text-gray-600">Phone</th>
+                            <th className="border px-4 py-2 text-gray-600">Email</th>
+                            <th className="border px-4 py-2 text-gray-600">Role</th>
+                            <th className="border px-4 py-2 text-gray-600">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {staffs.map((staff, index) => (
+                        {
+                            staffs.length > 0 ? (
+                                staffs.map((staff, index) => (
                             <tr key={staff.staffId} className="border-t border-gray-200 hover:bg-gray-50">
                                 <td className="px-4 py-2 text-gray-700">{index + 1}</td>
                                 <td className="px-4 py-2 text-gray-700">{staff.fullName}</td>
@@ -270,7 +269,14 @@ const StaffPage: React.FC = ()=> {
                                     </button>
                                 </td>
                             </tr>
-                        ))}
+                        ))
+                            ) : (
+                                <tr>
+                                    <td colSpan={11} className="text-center text-gray-500 py-5">
+                                        No Staffs available
+                                    </td>
+                                </tr>
+                            )}
                         </tbody>
                     </table>
                 </div>

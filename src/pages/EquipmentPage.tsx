@@ -117,21 +117,27 @@ const EquipmentPage: React.FC = ()=> {
                             onChange={(e) => setStatus(e.target.value)}
                             className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"
                         >
-                            <option value="">Select Status</option>
                             <option value="available">Available</option>
                             <option value="outOfService">Out of Service</option>
                         </select>
                     </div>
                     <div className="mb-4">
-                        <label className="block font-medium text-sm">Assigned Field</label>
-                        <input
-                            type="text"
+                        <label className="block font-medium text-sm">Assign Field</label>
+                        <select
                             name="assignedField"
-                            placeholder="Assigned Field"
                             value={assignedField}
                             onChange={(e) => setAssignedField(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-[230px] text-[14px] border border-gray-300 mt-5"
-                        />
+                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"
+                        >
+                            <option value="ricePalateA">Rice Palate A</option>
+                            <option value="ricePalateB">Rice Palate B</option>
+                            <option value="ricePalateC">Rice Palate C</option>
+                            <option value="cowpeaPalateA">Cowpea Palate A</option>
+                            <option value="cowpeaPalateB">Cowpea Palate B</option>
+                            <option value="cornPalate">Corn Palate</option>
+                            <option value="mixPalateA">Mix Palate A</option>
+                            <option value="mixPalateB">Mix Palate B</option>
+                        </select>
                     </div>
                     <div className="mb-4">
                         <label className="block font-medium text-sm">Assigned Staff</label>
@@ -157,22 +163,22 @@ const EquipmentPage: React.FC = ()=> {
 
             {/* equip List */}
             <div className="bg-white p-6 rounded-lg shadow-md">
-                <h2 className="text-xl font-bold mb-4">Equipment List</h2>
                 <div className="overflow-x-auto max-h-[350px] overflow-y-auto">
                     <table className="table-auto w-full border border-gray-200 rounded-lg shadow-md">
                         <thead className="bg-gray-100">
                         <tr>
-                            <th className="border px-4 py-2">#</th>
-                            <th className="border px-4 py-2">Equipment Name</th>
-                            <th className="border px-4 py-2">Equipment Type</th>
-                            <th className="border px-4 py-2">Status</th>
-                            <th className="border px-4 py-2">Assigned Field</th>
-                            <th className="border px-4 py-2">Assigned Staff</th>
-                            <th className="border px-4 py-2">Actions</th>
+                            <th className="border px-4 py-2 text-gray-600">#</th>
+                            <th className="border px-4 py-2 text-gray-600">Equipment Name</th>
+                            <th className="border px-4 py-2 text-gray-600">Equipment Type</th>
+                            <th className="border px-4 py-2 text-gray-600">Status</th>
+                            <th className="border px-4 py-2 text-gray-600">Assigned Field</th>
+                            <th className="border px-4 py-2 text-gray-600">Assigned Staff</th>
+                            <th className="border px-4 py-2 text-gray-600">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {equipments.map((equipment, index) => (
+                        {equipments.length > 0 ? (
+                            equipments.map((equipment, index) => (
                             <tr key={equipment.equipmentID} className="border-t border-gray-200 hover:bg-gray-50">
                                 <td className="px-4 py-2 text-gray-700">{index + 1}</td>
                                 <td className="px-4 py-2 text-gray-700">{equipment.equipmentName}</td>
@@ -191,7 +197,14 @@ const EquipmentPage: React.FC = ()=> {
                                     </button>
                                 </td>
                             </tr>
-                        ))}
+                        ))
+                        ) : (
+                            <tr>
+                                <td colSpan={7} className="text-center text-gray-500 py-5">
+                                    No Equipments available
+                                </td>
+                            </tr>
+                        )}
                         </tbody>
                     </table>
                 </div>

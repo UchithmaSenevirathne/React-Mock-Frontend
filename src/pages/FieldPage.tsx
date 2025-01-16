@@ -77,58 +77,66 @@ const FieldPage: React.FC = () => {
             {/* Field Form */}
             <div className="bg-white p-6 mb-6 flex flex-col gap-5">
                 <div className="flex gap-10 items-center">
-                <div className="mb-4">
-                    <label className="block font-medium text-sm">Field Name</label>
-                    <input
-                        type="text"
-                        value={fieldName}
-                        onChange={(e) => setFieldName(e.target.value)}
-                        placeholder="Rice Palate A"
-                        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-[230px] text-[14px] border border-gray-300 mt-5"
-                    />
-                </div>
+                    <div className="mb-4">
+                        <label className="block font-medium text-sm">Field Name</label>
+                        <select
+                            name="fieldName"
+                            value={fieldName}
+                            onChange={(e) => setFieldName(e.target.value)}
+                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-[230px] text-[14px] border border-gray-300 mt-5"
+                        >
+                            <option value="ricePalateA">Rice Palate A</option>
+                            <option value="ricePalateB">Rice Palate B</option>
+                            <option value="ricePalateC">Rice Palate C</option>
+                            <option value="cowpeaPalateA">Cowpea Palate A</option>
+                            <option value="cowpeaPalateB">Cowpea Palate B</option>
+                            <option value="cornPalate">Corn Palate</option>
+                            <option value="mixPalateA">Mix Palate A</option>
+                            <option value="mixPalateB">Mix Palate B</option>
+                        </select>
+                    </div>
 
-                <div className="mb-4">
-                    <label className="block font-medium text-sm">Field Location</label>
-                    <input
-                        type="text"
-                        value={fieldLocation}
-                        onChange={(e) => setFieldLocation(e.target.value)}
-                        placeholder="Colombo, Sri Lanka"
-                        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-80 text-[14px] border border-gray-300 mt-5"
-                    />
-                </div>
+                    <div className="mb-4">
+                        <label className="block font-medium text-sm">Field Location</label>
+                        <input
+                            type="text"
+                            value={fieldLocation}
+                            onChange={(e) => setFieldLocation(e.target.value)}
+                            placeholder="Colombo, Sri Lanka"
+                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-80 text-[14px] border border-gray-300 mt-5"
+                        />
+                    </div>
 
-                <div className="mb-4">
-                    <label className="block font-medium text-sm">Extent Size</label>
-                    <input
-                        type="number"
-                        value={extentSize}
-                        onChange={(e) => setExtentSize(e.target.value)}
-                        placeholder="2000 Sq.mt"
-                        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-52 text-[14px] border border-gray-300 mt-5"
-                    />
-                </div>
+                    <div className="mb-4">
+                        <label className="block font-medium text-sm">Extent Size</label>
+                        <input
+                            type="number"
+                            value={extentSize}
+                            onChange={(e) => setExtentSize(e.target.value)}
+                            placeholder="2000 Sq.mt"
+                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-52 text-[14px] border border-gray-300 mt-5"
+                        />
+                    </div>
 
-                <div className="mb-4">
-                    <label className="block font-medium text-sm">Field Image 1</label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => handleImageUpload(e.target.files?.[0] ?? null, setFieldImage1)}
-                        className="block w-full text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-100 file:text-[#086568] hover:file:bg-green-200 mt-5"
-                    />
-                </div>
+                    <div className="mb-4">
+                        <label className="block font-medium text-sm">Field Image 1</label>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => handleImageUpload(e.target.files?.[0] ?? null, setFieldImage1)}
+                            className="block w-full text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-100 file:text-[#086568] hover:file:bg-green-200 mt-5"
+                        />
+                    </div>
 
-                <div className="mb-4">
-                    <label className="block font-medium text-sm">Field Image 2</label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => handleImageUpload(e.target.files?.[0] ?? null, setFieldImage2)}
-                        className="block w-full text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-100 file:text-[#086568] hover:file:bg-green-200 mt-5"
-                    />
-                </div>
+                    <div className="mb-4">
+                        <label className="block font-medium text-sm">Field Image 2</label>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => handleImageUpload(e.target.files?.[0] ?? null, setFieldImage2)}
+                            className="block w-full text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-100 file:text-[#086568] hover:file:bg-green-200 mt-5"
+                        />
+                    </div>
                 </div>
                 <div>
                     <button
@@ -157,7 +165,8 @@ const FieldPage: React.FC = () => {
                         </tr>
                         </thead>
                         <tbody>
-                        {fields.map((field, index) => (
+                        {fields.length > 0 ? (
+                            fields.map((field, index) => (
                             <tr key={field.fieldCode} className="border-t border-gray-200 hover:bg-gray-50">
                                 <td className="px-4 py-2 text-gray-700">{index + 1}</td>
                                 <td className="px-4 py-2 text-gray-700">{field.fieldName}</td>
@@ -184,7 +193,14 @@ const FieldPage: React.FC = () => {
                                     </button>
                                 </td>
                             </tr>
-                        ))}
+                        ))
+                        ) : (
+                            <tr>
+                                <td colSpan={7} className="text-center text-gray-500 py-5">
+                                    No fields available
+                                </td>
+                            </tr>
+                        )}
                         </tbody>
                     </table>
                 </div>

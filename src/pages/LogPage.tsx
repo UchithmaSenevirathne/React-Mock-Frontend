@@ -119,25 +119,36 @@ const LogPage: React.FC = ()=> {
                     <div className="flex gap-12 items-center">
                         <div className="mb-4">
                             <label className="block font-medium text-sm">Assign Crop</label>
-                            <input
-                                type="text"
+                            <select
                                 name="assignedCrop"
-                                placeholder="Assigned Crop"
                                 value={assignedCrop}
                                 onChange={(e) => setAssignedCrop(e.target.value)}
-                                className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-52 text-[14px] border border-gray-300 mt-5"
-                            />
+                                className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"
+                            >
+                                <option value="bg-24">BG-24</option>
+                                <option value="cp-23">CP-23</option>
+                                <option value="cn-34">CN-34</option>
+                                <option value="ca-45">CA-45</option>
+                                <option value="gm-12">GM-12</option>
+                            </select>
                         </div>
                         <div className="mb-4">
                             <label className="block font-medium text-sm">Assign Field</label>
-                            <input
-                                type="text"
+                            <select
                                 name="assignedField"
-                                placeholder="Assigned Field"
                                 value={assignedField}
                                 onChange={(e) => setAssignedField(e.target.value)}
-                                className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-52 text-[14px] border border-gray-300 mt-5"
-                            />
+                                className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"
+                            >
+                                <option value="ricePalateA">Rice Palate A</option>
+                                <option value="ricePalateB">Rice Palate B</option>
+                                <option value="ricePalateC">Rice Palate C</option>
+                                <option value="cowpeaPalateA">Cowpea Palate A</option>
+                                <option value="cowpeaPalateB">Cowpea Palate B</option>
+                                <option value="cornPalate">Corn Palate</option>
+                                <option value="mixPalateA">Mix Palate A</option>
+                                <option value="mixPalateB">Mix Palate B</option>
+                            </select>
                         </div>
                         <div className="mb-4">
                             <label className="block font-medium text-sm">Assign Staff</label>
@@ -189,36 +200,37 @@ const LogPage: React.FC = ()=> {
                         </div>
                     </div>
                 </div>
-                    <div>
-                        <button
-                            onClick={handleFormSubmit}
-                            className="bg-[#086568] text-white rounded-3xl py-2 px-5"
-                        >
-                            {editingLog ? 'Update Log' : 'Add Log'}
-                        </button>
-                    </div>
+                <div>
+                    <button
+                        onClick={handleFormSubmit}
+                        className="bg-[#086568] text-white rounded-3xl py-2 px-5"
+                    >
+                        {editingLog ? 'Update Log' : 'Add Log'}
+                    </button>
                 </div>
+            </div>
 
-                {/* Crop List */}
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                <h2 className="text-xl font-bold mb-4">Log List</h2>
+            {/* Crop List */}
+            <div className="bg-white p-6 rounded-lg shadow-md">
                 <div className="overflow-x-auto max-h-[350px] overflow-y-auto">
                     <table className="table-auto w-full border border-gray-200 rounded-lg shadow-md">
                         <thead className="bg-gray-100">
                         <tr>
-                            <th className="border px-4 py-2">#</th>
-                            <th className="border px-4 py-2">Log Date</th>
-                            <th className="border px-4 py-2">Log Details</th>
-                            <th className="border px-4 py-2">Crop Status</th>
-                            <th className="border px-4 py-2">Assign Crop</th>
-                            <th className="border px-4 py-2">Assign Field</th>
-                            <th className="border px-4 py-2">Assign Staff</th>
-                            <th className="border px-4 py-2">Observed Image</th>
-                            <th className="border px-4 py-2">Actions</th>
+                            <th className="border px-4 py-2 text-gray-600">#</th>
+                            <th className="border px-4 py-2 text-gray-600">Log Date</th>
+                            <th className="border px-4 py-2 text-gray-600">Log Details</th>
+                            <th className="border px-4 py-2 text-gray-600">Crop Status</th>
+                            <th className="border px-4 py-2 text-gray-600">Assign Crop</th>
+                            <th className="border px-4 py-2 text-gray-600">Assign Field</th>
+                            <th className="border px-4 py-2 text-gray-600">Assign Staff</th>
+                            <th className="border px-4 py-2 text-gray-600">Observed Image</th>
+                            <th className="border px-4 py-2 text-gray-600">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {logs.map((log, index) => (
+                        {
+                            logs.length > 0 ? (
+                                logs.map((log, index) => (
                             <tr key={log.logCode} className="border-t border-gray-200 hover:bg-gray-50">
                                 <td className="px-4 py-2 text-gray-700">{index + 1}</td>
                                 <td className="px-4 py-2 text-gray-700">{log.logDate}</td>
@@ -249,7 +261,14 @@ const LogPage: React.FC = ()=> {
                                     </button>
                                 </td>
                             </tr>
-                        ))}
+                        ))
+                            ) : (
+                                <tr>
+                                    <td colSpan={10} className="text-center text-gray-500 py-5">
+                                        No Logs available
+                                    </td>
+                                </tr>
+                            )}
                         </tbody>
                     </table>
                 </div>

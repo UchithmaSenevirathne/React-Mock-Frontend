@@ -83,14 +83,18 @@ const CropPage: React.FC = ()=> {
                 <div className="flex gap-10 items-center">
                     <div className="mb-4">
                         <label className="block font-medium text-sm">Crop Common Name</label>
-                        <input
-                            type="text"
+                        <select
                             name="cropCommonName"
-                            placeholder="Crop Common Name"
                             value={cropCommonName}
                             onChange={(e) => setCropCommonName(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"
-                        />
+                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-40 text-[14px] border border-gray-300 mt-5"
+                        >
+                            <option value="bg-24">BG-24</option>
+                            <option value="cp-23">CP-23</option>
+                            <option value="cn-34">CN-34</option>
+                            <option value="ca-45">CA-45</option>
+                            <option value="gm-12">GM-12</option>
+                        </select>
                     </div>
                     <div className="mb-4">
                         <label className="block font-medium text-sm">Crop Scientific Name</label>
@@ -105,25 +109,36 @@ const CropPage: React.FC = ()=> {
                     </div>
                     <div className="mb-4">
                         <label className="block font-medium text-sm">Category</label>
-                        <input
-                            type="text"
+                        <select
                             name="category"
-                            placeholder="Category"
                             value={category}
                             onChange={(e) => setCategory(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-52 text-[14px] border border-gray-300 mt-5"
-                        />
+                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-40 text-[14px] border border-gray-300 mt-5"
+                        >
+                            <option value="rice">Rice</option>
+                            <option value="cowpea">Cowpea</option>
+                            <option value="corn">Corn</option>
+                            <option value="cassava">Cassava</option>
+                            <option value="greengram">Green Gram</option>
+                        </select>
                     </div>
                     <div className="mb-4">
-                        <label className="block font-medium text-sm">Field</label>
-                        <input
-                            type="text"
+                        <label className="block font-medium text-sm">Field Name</label>
+                        <select
                             name="fieldCode"
-                            placeholder="Field"
                             value={fieldCode}
                             onChange={(e) => setFieldCode(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-52 text-[14px] border border-gray-300 mt-5"
-                        />
+                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-[230px] text-[14px] border border-gray-300 mt-5"
+                        >
+                            <option value="ricePalateA">Rice Palate A</option>
+                            <option value="ricePalateB">Rice Palate B</option>
+                            <option value="ricePalateC">Rice Palate C</option>
+                            <option value="cowpeaPalateA">Cowpea Palate A</option>
+                            <option value="cowpeaPalateB">Cowpea Palate B</option>
+                            <option value="cornPalate">Corn Palate</option>
+                            <option value="mixPalateA">Mix Palate A</option>
+                            <option value="mixPalateB">Mix Palate B</option>
+                        </select>
                     </div>
                     <div className="mb-4">
                         <label className="block font-medium text-sm">Crop Season</label>
@@ -133,50 +148,49 @@ const CropPage: React.FC = ()=> {
                             onChange={(e) => setCropSeason(e.target.value)}
                             className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"
                         >
-                            <option value="">Select Season</option>
                             <option value="Yala">Yala Season</option>
                             <option value="Maha">Maha Season</option>
                         </select>
                     </div>
-                        <div className="mb-4">
-                            <label className="block font-medium text-sm">Crop Image</label>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={(e) => handleImageChange(e.target.files?.[0] ?? null, setCropImage)}
-                                className="block w-full text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-100 file:text-[#086568] hover:file:bg-green-200 mt-5"
-                            />
-                        </div>
-                    </div>
-                    <div>
-                        <button
-                            onClick={handleFormSubmit}
-                            className="bg-[#086568] text-white rounded-3xl py-2 px-5"
-                        >
-                            {editingCrop ? 'Update Crop' : 'Add Crop'}
-                        </button>
+                    <div className="mb-4">
+                        <label className="block font-medium text-sm">Crop Image</label>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => handleImageChange(e.target.files?.[0] ?? null, setCropImage)}
+                            className="block w-full text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-100 file:text-[#086568] hover:file:bg-green-200 mt-5"
+                        />
                     </div>
                 </div>
+                <div>
+                    <button
+                        onClick={handleFormSubmit}
+                        className="bg-[#086568] text-white rounded-3xl py-2 px-5"
+                    >
+                        {editingCrop ? 'Update Crop' : 'Add Crop'}
+                    </button>
+                </div>
+            </div>
 
-                {/* Crop List */}
+            {/* Crop List */}
             <div className="bg-white p-6 rounded-lg shadow-md">
-                <h2 className="text-xl font-bold mb-4">Crop List</h2>
                 <div className="overflow-x-auto max-h-[350px] overflow-y-auto">
                     <table className="table-auto w-full border border-gray-200 rounded-lg shadow-md">
                         <thead className="bg-gray-100">
                         <tr>
-                            <th className="border px-4 py-2">#</th>
-                            <th className="border px-4 py-2">Common Name</th>
-                            <th className="border px-4 py-2">Scientific Name</th>
-                            <th className="border px-4 py-2">Category</th>
-                            <th className="border px-4 py-2">Season</th>
-                            <th className="border px-4 py-2">Field</th>
-                            <th className="border px-4 py-2">Image</th>
-                            <th className="border px-4 py-2">Actions</th>
+                            <th className="border px-4 py-2 text-gray-600">#</th>
+                            <th className="border px-4 py-2 text-gray-600">Common Name</th>
+                            <th className="border px-4 py-2 text-gray-600">Scientific Name</th>
+                            <th className="border px-4 py-2 text-gray-600">Category</th>
+                            <th className="border px-4 py-2 text-gray-600">Season</th>
+                            <th className="border px-4 py-2 text-gray-600">Field</th>
+                            <th className="border px-4 py-2 text-gray-600">Image</th>
+                            <th className="border px-4 py-2 text-gray-600">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {crops.map((crop, index) => (
+                        {crops.length > 0 ? (
+                        crops.map((crop, index) => (
                             <tr key={crop.cropCode} className="border-t border-gray-200 hover:bg-gray-50">
                                 <td className="px-4 py-2 text-gray-700">{index + 1}</td>
                                 <td className="px-4 py-2 text-gray-700">{crop.cropCommonName}</td>
@@ -204,7 +218,14 @@ const CropPage: React.FC = ()=> {
                                     </button>
                                 </td>
                             </tr>
-                        ))}
+                        ))
+                        ) : (
+                            <tr>
+                                <td colSpan={9} className="text-center text-gray-500 py-5">
+                                    No Crops available
+                                </td>
+                            </tr>
+                        )}
                         </tbody>
                     </table>
                 </div>
