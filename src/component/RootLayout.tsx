@@ -8,7 +8,7 @@ export function RootLayout() {
     return (
         <div className="flex w-full h-screen">
             <Navigation/>
-            <main className="bg-white p-10 flex-1 my-7 mr-7 rounded-2xl">
+            <main className="bg-white p-7 flex-1 my-7 mr-7 rounded-2xl">
                 <div className="flex justify-between items-center mb-8 ">
                     <h1 className="text-3xl font-medium text-[#002C2D] playpen">
                         Welcome to Green Shadow !

@@ -3,6 +3,8 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {RootLayout} from "./component/RootLayout.tsx";
 import {Dashboard} from "./pages/Dashboard.tsx";
 import FieldPage from "./pages/FieldPage.tsx";
+import CropPage from "./pages/CropPage.tsx";
+import StaffPage from "./pages/StaffPage.tsx";
 
 function App() {
 
@@ -13,8 +15,8 @@ function App() {
       children: [
         {path: "/", element: <Dashboard/>},
         {path: "/field", element: <FieldPage/>},
-        // {path: "/update", element: <Update/>},
-        // {path: "/delete", element: <Delete/>}
+        {path: "/crop", element: <CropPage/>},
+        {path: "/staff", element: <StaffPage/>}
       ]
     },
     // {path: "*", element: <Error/>}

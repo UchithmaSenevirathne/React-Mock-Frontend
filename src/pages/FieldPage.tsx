@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {addField, deleteField, setAlertType, updateField} from '../reducers/FieldSlice.ts'; // Assuming the slice is named fieldSlice
 import { RootState } from '../store/Store.ts';
 import {faEdit, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"; // Your Redux store file
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Field} from "../models/Field.ts"; // Your Redux store file
 
 const FieldPage: React.FC = () => {
     const [fieldName, setFieldName] = useState('');
@@ -11,9 +12,9 @@ const FieldPage: React.FC = () => {
     const [extentSize, setExtentSize] = useState('');
     const [fieldImage1, setFieldImage1] = useState<File | null>(null);
     const [fieldImage2, setFieldImage2] = useState<File | null>(null);
-    const [editingField, setEditingField] = useState<any>(null);
-    const dispatch = useDispatch();
+    const [editingField, setEditingField] = useState<Field | null>(null);
 
+    const dispatch = useDispatch();
     const fields = useSelector((state: RootState) => state.field.fields);
 
     const handleImageUpload = (file: File | null, setFieldImage: React.Dispatch<React.SetStateAction<File | null>>) => {
@@ -29,14 +30,14 @@ const FieldPage: React.FC = () => {
             return;
         }
 
-        const newField = {
-            fieldCode: editingField ? editingField.fieldCode : Math.random().toString(),
+        const newField = new Field(
+            editingField ? editingField.fieldCode : Math.random().toString(),
             fieldName,
             fieldLocation,
             extentSize,
-            fieldImage1: fieldImage1 ? URL.createObjectURL(fieldImage1) : '',
-            fieldImage2: fieldImage2 ? URL.createObjectURL(fieldImage2) : '',
-        };
+            fieldImage1 ? URL.createObjectURL(fieldImage1) : '',
+            fieldImage2 ? URL.createObjectURL(fieldImage2) : ''
+        );
 
         if (editingField) {
             // Update the field if we are in editing mode
@@ -57,7 +58,7 @@ const FieldPage: React.FC = () => {
         setEditingField(null);
     };
 
-    const handleEdit = (field: any) => {
+    const handleEdit = (field: Field) => {
         setFieldName(field.fieldName);
         setFieldLocation(field.fieldLocation);
         setExtentSize(field.extentSize);

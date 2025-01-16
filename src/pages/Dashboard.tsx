@@ -3,7 +3,7 @@ import dashbg from '../assets/images/dash-background.jpg';
 
 export  function  Dashboard () {
     return (
-        <div className="bg-no-repeat w-full h-[700px] flex items-center justify-center rounded-lg gap-[300px]"
+        <div className="bg-no-repeat w-full h-[730px] flex items-center justify-center rounded-lg gap-[300px]"
              style={{
                  backgroundImage: `url(${dashbg})`,
                  backgroundSize: 'cover',

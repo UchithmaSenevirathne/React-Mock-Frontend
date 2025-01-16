@@ -1,17 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {Field} from "../models/Field.ts";
 
 interface FieldState {
     fields: Field[];
     alertType: string;
-}
-
-interface Field {
-    fieldCode: string;
-    fieldName: string;
-    fieldLocation: string;
-    extentSize: string;
-    fieldImage1: string;
-    fieldImage2: string;
 }
 
 const initialState: FieldState = {
