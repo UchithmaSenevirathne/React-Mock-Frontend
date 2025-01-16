@@ -6,6 +6,7 @@ import FieldPage from "./pages/FieldPage.tsx";
 import CropPage from "./pages/CropPage.tsx";
 import StaffPage from "./pages/StaffPage.tsx";
 import LogPage from "./pages/LogPage.tsx";
+import EquipmentPage from "./pages/EquipmentPage.tsx";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         {path: "/crop", element: <CropPage/>},
         {path: "/staff", element: <StaffPage/>},
         {path: "/log", element: <LogPage/>},
+        {path: "/equipment", element: <EquipmentPage/>},
       ]
     },
     // {path: "*", element: <Error/>}
