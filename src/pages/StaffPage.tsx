@@ -233,7 +233,7 @@ const StaffPage: React.FC = ()=> {
                     <table className="table-auto w-full border border-gray-200 rounded-lg shadow-md">
                         <thead className="bg-gray-100">
                         <tr>
-                            <th className="border px-4 py-2">#</th>
+                            <th className="px-4 py-2 text-left text-gray-600">#</th>
                             <th className="border px-4 py-2">Full Name</th>
                             <th className="border px-4 py-2">Designation</th>
                             <th className="border px-4 py-2">Gender</th>
