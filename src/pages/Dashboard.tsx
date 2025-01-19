@@ -63,7 +63,7 @@ export  function  Dashboard () {
                         <li>4</li>
                         <li>5</li>
                         <li>6</li>
-                        <li className="today">7</li>
+                        <li>7</li>
                     </ul>
                     <ul className="calendar-dates">
                         <li>8</li>
@@ -79,7 +79,7 @@ export  function  Dashboard () {
                         <li>16</li>
                         <li>17</li>
                         <li>18</li>
-                        <li>19</li>
+                        <li className="today">19</li>
                         <li>20</li>
                         <li>21</li>
                     </ul>

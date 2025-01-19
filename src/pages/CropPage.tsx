@@ -5,6 +5,7 @@ import {Crop} from "../models/Crop.ts";
 import {addCrop, deleteCrop, updateCrop, setAlertType} from "../reducers/CropSlice.ts";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
+import cropImg from '../assets/images/crop.png'
 
 const CropPage: React.FC = ()=> {
     const [cropCommonName, setCropCommonName] = useState("");
@@ -80,85 +81,98 @@ const CropPage: React.FC = ()=> {
         <div className="container mx-auto">
             {/* Crop Form */}
             <div className="bg-white p-6 mb-6 flex flex-col gap-5">
-                <div className="flex gap-10 items-center">
-                    <div className="mb-4">
-                        <label className="block font-medium text-sm">Crop Common Name</label>
-                        <select
-                            name="cropCommonName"
-                            value={cropCommonName}
-                            onChange={(e) => setCropCommonName(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-40 text-[14px] border border-gray-300 mt-5"
-                        >
-                            <option value="bg-24">BG-24</option>
-                            <option value="cp-23">CP-23</option>
-                            <option value="cn-34">CN-34</option>
-                            <option value="ca-45">CA-45</option>
-                            <option value="gm-12">GM-12</option>
-                        </select>
+                <div className="flex gap-20">
+                    <div className="flex flex-col gap-5 justify-center">
+                        <div className="flex gap-16 items-center">
+                            <div className="mb-4">
+                                <label className="block font-medium text-sm">Crop Common Name</label>
+                                <select
+                                    name="cropCommonName"
+                                    value={cropCommonName}
+                                    onChange={(e) => setCropCommonName(e.target.value)}
+                                    className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"
+                                >
+                                    <option value="bg-24">BG-24</option>
+                                    <option value="cp-23">CP-23</option>
+                                    <option value="cn-34">CN-34</option>
+                                    <option value="ca-45">CA-45</option>
+                                    <option value="gm-12">GM-12</option>
+                                </select>
+                            </div>
+                            <div className="mb-4">
+                                <label className="block font-medium text-sm">Crop Scientific Name</label>
+                                <input
+                                    type="text"
+                                    name="cropScientificName"
+                                    placeholder="Crop Scientific Name"
+                                    value={cropScientificName}
+                                    onChange={(e) => setCropScientificName(e.target.value)}
+                                    className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-64 text-[14px] border border-gray-300 mt-5"
+                                />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block font-medium text-sm">Category</label>
+                                <select
+                                    name="category"
+                                    value={category}
+                                    onChange={(e) => setCategory(e.target.value)}
+                                    className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"
+                                >
+                                    <option value="rice">Rice</option>
+                                    <option value="cowpea">Cowpea</option>
+                                    <option value="corn">Corn</option>
+                                    <option value="cassava">Cassava</option>
+                                    <option value="greengram">Green Gram</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className="flex gap-16 items-center">
+                            <div className="mb-4">
+                                <label className="block font-medium text-sm">Field Name</label>
+                                <select
+                                    name="fieldCode"
+                                    value={fieldCode}
+                                    onChange={(e) => setFieldCode(e.target.value)}
+                                    className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-64 text-[14px] border border-gray-300 mt-5"
+                                >
+                                    <option value="ricePalateA">Rice Palate A</option>
+                                    <option value="ricePalateB">Rice Palate B</option>
+                                    <option value="ricePalateC">Rice Palate C</option>
+                                    <option value="cowpeaPalateA">Cowpea Palate A</option>
+                                    <option value="cowpeaPalateB">Cowpea Palate B</option>
+                                    <option value="cornPalate">Corn Palate</option>
+                                    <option value="mixPalateA">Mix Palate A</option>
+                                    <option value="mixPalateB">Mix Palate B</option>
+                                </select>
+                            </div>
+                            <div className="mb-4">
+                                <label className="block font-medium text-sm">Crop Season</label>
+                                <select
+                                    name="cropSeason"
+                                    value={cropSeason}
+                                    onChange={(e) => setCropSeason(e.target.value)}
+                                    className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"
+                                >
+                                    <option value="Yala">Yala Season</option>
+                                    <option value="Maha">Maha Season</option>
+                                </select>
+                            </div>
+                            <div className="mb-4">
+                                <label className="block font-medium text-sm">Crop Image</label>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(e) => handleImageChange(e.target.files?.[0] ?? null, setCropImage)}
+                                    className="block w-full text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-100 file:text-[#086568] hover:file:bg-green-200 mt-5"
+                                />
+                            </div>
+                        </div>
                     </div>
-                    <div className="mb-4">
-                        <label className="block font-medium text-sm">Crop Scientific Name</label>
-                        <input
-                            type="text"
-                            name="cropScientificName"
-                            placeholder="Crop Scientific Name"
-                            value={cropScientificName}
-                            onChange={(e) => setCropScientificName(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-[230px] text-[14px] border border-gray-300 mt-5"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block font-medium text-sm">Category</label>
-                        <select
-                            name="category"
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-40 text-[14px] border border-gray-300 mt-5"
-                        >
-                            <option value="rice">Rice</option>
-                            <option value="cowpea">Cowpea</option>
-                            <option value="corn">Corn</option>
-                            <option value="cassava">Cassava</option>
-                            <option value="greengram">Green Gram</option>
-                        </select>
-                    </div>
-                    <div className="mb-4">
-                        <label className="block font-medium text-sm">Field Name</label>
-                        <select
-                            name="fieldCode"
-                            value={fieldCode}
-                            onChange={(e) => setFieldCode(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-[230px] text-[14px] border border-gray-300 mt-5"
-                        >
-                            <option value="ricePalateA">Rice Palate A</option>
-                            <option value="ricePalateB">Rice Palate B</option>
-                            <option value="ricePalateC">Rice Palate C</option>
-                            <option value="cowpeaPalateA">Cowpea Palate A</option>
-                            <option value="cowpeaPalateB">Cowpea Palate B</option>
-                            <option value="cornPalate">Corn Palate</option>
-                            <option value="mixPalateA">Mix Palate A</option>
-                            <option value="mixPalateB">Mix Palate B</option>
-                        </select>
-                    </div>
-                    <div className="mb-4">
-                        <label className="block font-medium text-sm">Crop Season</label>
-                        <select
-                            name="cropSeason"
-                            value={cropSeason}
-                            onChange={(e) => setCropSeason(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"
-                        >
-                            <option value="Yala">Yala Season</option>
-                            <option value="Maha">Maha Season</option>
-                        </select>
-                    </div>
-                    <div className="mb-4">
-                        <label className="block font-medium text-sm">Crop Image</label>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) => handleImageChange(e.target.files?.[0] ?? null, setCropImage)}
-                            className="block w-full text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-100 file:text-[#086568] hover:file:bg-green-200 mt-5"
+                    <div className="w-100 h-60 rounded-lg flex justify-center items-center">
+                        <img
+                            src={cropImg}
+                            alt=""
+                            className="w-full h-full object-cover rounded-lg"
                         />
                     </div>
                 </div>
@@ -167,13 +181,13 @@ const CropPage: React.FC = ()=> {
                         onClick={handleFormSubmit}
                         className="bg-[#086568] text-white rounded-3xl py-2 px-5"
                     >
-                        {editingCrop ? 'Update Crop' : 'Add Crop'}
-                    </button>
-                </div>
+                    {editingCrop ? 'Update Crop' : 'Add Crop'}
+                        </button>
+                    </div>
             </div>
 
-            {/* Crop List */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
+                {/* Crop List */}
+                <div className="bg-white p-6 rounded-lg shadow-md">
                 <div className="overflow-x-auto max-h-[350px] overflow-y-auto">
                     <table className="table-auto w-full border border-gray-200 rounded-lg shadow-md">
                         <thead className="bg-gray-100">
