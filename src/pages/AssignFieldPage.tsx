@@ -5,6 +5,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 import {AssignField} from "../models/AssignField.ts";
 import {addAssign, deleteAssign, updateAssign, setAlertType} from "../reducers/AssignFieldSlice.ts";
+import {FormField} from "../component/FormField.tsx";
+import {Button} from "../component/Button.tsx";
 
 const AssignFieldPage: React.FC = ()=> {
     const [assignedDate, setAssignedDate] = useState("");
@@ -78,46 +80,80 @@ const AssignFieldPage: React.FC = ()=> {
             {/* assign Form */}
             <div className="bg-white p-6 mb-6 flex flex-col gap-5">
                 <div className="flex gap-12 items-center">
-                    <div className="mb-4">
-                        <label className="block font-medium text-sm">Assigned Date</label>
-                        <input
-                            type="date"
-                            name="assignedDate"
-                            placeholder="Assigned Date"
-                            value={assignedDate}
-                            onChange={(e) => setAssignedDate(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block font-medium text-sm">Due Date</label>
-                        <input
-                            type="date"
-                            name="dueDate"
-                            placeholder="Due Date"
-                            value={dueDate}
-                            onChange={(e) => setDueDate(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block font-medium text-sm">Assign Field</label>
-                        <select
-                            name="assignedField"
-                            value={assignedField}
-                            onChange={(e) => setAssignedField(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"
-                        >
-                            <option value="ricePalateA">Rice Palate A</option>
-                            <option value="ricePalateB">Rice Palate B</option>
-                            <option value="ricePalateC">Rice Palate C</option>
-                            <option value="cowpeaPalateA">Cowpea Palate A</option>
-                            <option value="cowpeaPalateB">Cowpea Palate B</option>
-                            <option value="cornPalate">Corn Palate</option>
-                            <option value="mixPalateA">Mix Palate A</option>
-                            <option value="mixPalateB">Mix Palate B</option>
-                        </select>
-                    </div>
+                    <FormField
+                        label="Assigned Date"
+                        type="date"
+                        value={assignedDate}
+                        onChange={setAssignedDate}
+                        placeholder="Assigned Date"
+                        className="w-56"
+                    />
+                    {/*<div className="mb-4">*/}
+                    {/*    <label className="block font-medium text-sm">Assigned Date</label>*/}
+                    {/*    <input*/}
+                    {/*        type="date"*/}
+                    {/*        name="assignedDate"*/}
+                    {/*        placeholder="Assigned Date"*/}
+                    {/*        value={assignedDate}*/}
+                    {/*        onChange={(e) => setAssignedDate(e.target.value)}*/}
+                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
+                    {/*    />*/}
+                    {/*</div>*/}
+                    <FormField
+                        label="Due Date"
+                        type="date"
+                        value={dueDate}
+                        onChange={setDueDate}
+                        placeholder="Due Date"
+                        className="w-56"
+                    />
+                    {/*<div className="mb-4">*/}
+                    {/*    <label className="block font-medium text-sm">Due Date</label>*/}
+                    {/*    <input*/}
+                    {/*        type="date"*/}
+                    {/*        name="dueDate"*/}
+                    {/*        placeholder="Due Date"*/}
+                    {/*        value={dueDate}*/}
+                    {/*        onChange={(e) => setDueDate(e.target.value)}*/}
+                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
+                    {/*    />*/}
+                    {/*</div>*/}
+                    <FormField
+                        label="Assign Field"
+                        type="select"
+                        value={assignedField}
+                        onChange={setAssignedField}
+                        options={[
+                            { value: 'Rice Palate A', label: 'Rice Palate A' },
+                            { value: 'Rice Palate B', label: 'Rice Palate B' },
+                            { value: 'Rice Palate C', label: 'Rice Palate C' },
+                            { value: 'Cowpea Palate A', label: 'Cowpea Palate A' },
+                            { value: 'Cowpea Palate B', label: 'Cowpea Palate B' },
+                            { value: 'Corn Palate', label: 'Corn Palate' },
+                            { value: 'Mix Palate A', label: 'Mix Palate A' },
+                            { value: 'Mix Palate B', label: 'Mix Palate B' }
+                            // ... other options
+                        ]}
+                        className="w-56"
+                    />
+                    {/*<div className="mb-4">*/}
+                    {/*    <label className="block font-medium text-sm">Assign Field</label>*/}
+                    {/*    <select*/}
+                    {/*        name="assignedField"*/}
+                    {/*        value={assignedField}*/}
+                    {/*        onChange={(e) => setAssignedField(e.target.value)}*/}
+                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
+                    {/*    >*/}
+                    {/*        <option value="ricePalateA">Rice Palate A</option>*/}
+                    {/*        <option value="ricePalateB">Rice Palate B</option>*/}
+                    {/*        <option value="ricePalateC">Rice Palate C</option>*/}
+                    {/*        <option value="cowpeaPalateA">Cowpea Palate A</option>*/}
+                    {/*        <option value="cowpeaPalateB">Cowpea Palate B</option>*/}
+                    {/*        <option value="cornPalate">Corn Palate</option>*/}
+                    {/*        <option value="mixPalateA">Mix Palate A</option>*/}
+                    {/*        <option value="mixPalateB">Mix Palate B</option>*/}
+                    {/*    </select>*/}
+                    {/*</div>*/}
                     <div className="relative mb-4">
                         <label className="block font-medium text-sm mb-2">Assign Staffs</label>
                         {/* Dropdown Button */}
@@ -183,12 +219,15 @@ const AssignFieldPage: React.FC = ()=> {
 
                 </div>
                 <div>
-                    <button
-                        onClick={handleFormSubmit}
-                        className="bg-[#086568] text-white rounded-3xl py-2 px-5"
-                    >
+                    <Button onClick={handleFormSubmit}>
                         {editingAssigns ? 'Update Assign' : 'Assign Field'}
-                    </button>
+                    </Button>
+                    {/*<button*/}
+                    {/*    onClick={handleFormSubmit}*/}
+                    {/*    className="bg-[#086568] text-white rounded-3xl py-2 px-5"*/}
+                    {/*>*/}
+                    {/*    {editingAssigns ? 'Update Assign' : 'Assign Field'}*/}
+                    {/*</button>*/}
                 </div>
             </div>
 

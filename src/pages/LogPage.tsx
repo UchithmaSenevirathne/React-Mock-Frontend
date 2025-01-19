@@ -5,6 +5,8 @@ import {faEdit, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
+import {FormField} from "../component/FormField.tsx";
+import {Button} from "../component/Button.tsx";
 
 
 const LogPage: React.FC = ()=> {
@@ -85,17 +87,25 @@ const LogPage: React.FC = ()=> {
             <div className="bg-white p-6 mb-6 flex flex-col gap-5">
                 <div className="flex flex-col gap-5">
                     <div className="flex gap-12 items-center">
-                        <div className="mb-4">
-                            <label className="block font-medium text-sm">Log Date</label>
-                            <input
-                                type="date"
-                                name="logDate"
-                                placeholder="Log Date"
-                                value={logDate}
-                                onChange={(e) => setLogDate(e.target.value)}
-                                className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"
-                            />
-                        </div>
+                        <FormField
+                            label="Log Date"
+                            type="date"
+                            value={logDate}
+                            onChange={setLogDate}
+                            placeholder="Log Date"
+                            className="w-56"
+                        />
+                        {/*<div className="mb-4">*/}
+                        {/*    <label className="block font-medium text-sm">Log Date</label>*/}
+                        {/*    <input*/}
+                        {/*        type="date"*/}
+                        {/*        name="logDate"*/}
+                        {/*        placeholder="Log Date"*/}
+                        {/*        value={logDate}*/}
+                        {/*        onChange={(e) => setLogDate(e.target.value)}*/}
+                        {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
+                        {/*    />*/}
+                        {/*</div>*/}
                         <div className="mb-4">
                             <label className="block font-medium text-sm">Log Details</label>
                             <textarea
@@ -117,55 +127,106 @@ const LogPage: React.FC = ()=> {
                         </div>
                     </div>
                     <div className="flex gap-12 items-center">
-                        <div className="mb-4">
-                            <label className="block font-medium text-sm">Assign Crop</label>
-                            <select
-                                name="assignedCrop"
-                                value={assignedCrop}
-                                onChange={(e) => setAssignedCrop(e.target.value)}
-                                className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"
-                            >
-                                <option value="bg-24">BG-24</option>
-                                <option value="cp-23">CP-23</option>
-                                <option value="cn-34">CN-34</option>
-                                <option value="ca-45">CA-45</option>
-                                <option value="gm-12">GM-12</option>
-                            </select>
-                        </div>
-                        <div className="mb-4">
-                            <label className="block font-medium text-sm">Assign Field</label>
-                            <select
-                                name="assignedField"
-                                value={assignedField}
-                                onChange={(e) => setAssignedField(e.target.value)}
-                                className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"
-                            >
-                                <option value="ricePalateA">Rice Palate A</option>
-                                <option value="ricePalateB">Rice Palate B</option>
-                                <option value="ricePalateC">Rice Palate C</option>
-                                <option value="cowpeaPalateA">Cowpea Palate A</option>
-                                <option value="cowpeaPalateB">Cowpea Palate B</option>
-                                <option value="cornPalate">Corn Palate</option>
-                                <option value="mixPalateA">Mix Palate A</option>
-                                <option value="mixPalateB">Mix Palate B</option>
-                            </select>
-                        </div>
-                        <div className="mb-4">
-                            <label className="block font-medium text-sm">Assign Staff</label>
-                            <select
-                                name="assignedStaff"
-                                value={assignedStaff}
-                                onChange={(e) => setAssignedStaff(e.target.value)}
-                                className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-96 text-[14px] border border-gray-300 mt-5"
-                            >
-                                <option value="C-1">Uchithma Senevirathne (C-1)</option>
-                                <option value="C-2">Iman Adithya (C-2)</option>
-                                <option value="C-3">John Doe (C-3)</option>
-                                <option value="C-4">Jane Doe (C-4)</option>
-                                <option value="C-5">July Doe (C-5)</option>
-                                <option value="C-6">Saman Pereira (C-6)</option>
-                            </select>
-                        </div>
+                        <FormField
+                            label="Assign Crop<"
+                            type="select"
+                            value={assignedCrop}
+                            onChange={setAssignedCrop}
+                            options={[
+                                { value: 'BG-24', label: 'BG-24' },
+                                { value: 'CP-23', label: 'CP-23' },
+                                { value: 'CN-34', label: 'CN-34' },
+                                { value: 'CA-45', label: 'CA-45' },
+                                { value: 'GM-12', label: 'GM-12' }
+                                // ... other options
+                            ]}
+                            className="w-56"
+                        />
+                        {/*<div className="mb-4">*/}
+                        {/*    <label className="block font-medium text-sm">Assign Crop</label>*/}
+                        {/*    <select*/}
+                        {/*        name="assignedCrop"*/}
+                        {/*        value={assignedCrop}*/}
+                        {/*        onChange={(e) => setAssignedCrop(e.target.value)}*/}
+                        {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
+                        {/*    >*/}
+                        {/*        <option value="bg-24">BG-24</option>*/}
+                        {/*        <option value="cp-23">CP-23</option>*/}
+                        {/*        <option value="cn-34">CN-34</option>*/}
+                        {/*        <option value="ca-45">CA-45</option>*/}
+                        {/*        <option value="gm-12">GM-12</option>*/}
+                        {/*    </select>*/}
+                        {/*</div>*/}
+
+                        <FormField
+                            label="Assign Field"
+                            type="select"
+                            value={assignedField}
+                            onChange={setAssignedField}
+                            options={[
+                                { value: 'Rice Palate A', label: 'Rice Palate A' },
+                                { value: 'Rice Palate B', label: 'Rice Palate B' },
+                                { value: 'Rice Palate C', label: 'Rice Palate C' },
+                                { value: 'Cowpea Palate A', label: 'Cowpea Palate A' },
+                                { value: 'Cowpea Palate B', label: 'Cowpea Palate B' },
+                                { value: 'Corn Palate', label: 'Corn Palate' },
+                                { value: 'Mix Palate A', label: 'Mix Palate A' },
+                                { value: 'Mix Palate B', label: 'Mix Palate B' }
+                                // ... other options
+                            ]}
+                            className="w-56"
+                        />
+                        {/*<div className="mb-4">*/}
+                        {/*    <label className="block font-medium text-sm">Assign Field</label>*/}
+                        {/*    <select*/}
+                        {/*        name="assignedField"*/}
+                        {/*        value={assignedField}*/}
+                        {/*        onChange={(e) => setAssignedField(e.target.value)}*/}
+                        {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
+                        {/*    >*/}
+                        {/*        <option value="ricePalateA">Rice Palate A</option>*/}
+                        {/*        <option value="ricePalateB">Rice Palate B</option>*/}
+                        {/*        <option value="ricePalateC">Rice Palate C</option>*/}
+                        {/*        <option value="cowpeaPalateA">Cowpea Palate A</option>*/}
+                        {/*        <option value="cowpeaPalateB">Cowpea Palate B</option>*/}
+                        {/*        <option value="cornPalate">Corn Palate</option>*/}
+                        {/*        <option value="mixPalateA">Mix Palate A</option>*/}
+                        {/*        <option value="mixPalateB">Mix Palate B</option>*/}
+                        {/*    </select>*/}
+                        {/*</div>*/}
+
+                        <FormField
+                            label="Assign Staff"
+                            type="select"
+                            value={assignedStaff}
+                            onChange={setAssignedStaff}
+                            options={[
+                                { value: 'Uchithma Senevirathne (C-1)', label: 'Uchithma Senevirathne (C-1)' },
+                                { value: 'Iman Adithya (C-2)', label: 'Iman Adithya (C-2)' },
+                                { value: 'John Doe (C-3)', label: 'John Doe (C-3)' },
+                                { value: 'Jane Doe (C-4)', label: 'Jane Doe (C-4)' },
+                                { value: 'July Doe (C-5)', label: 'July Doe (C-5)' }
+                                // ... other options
+                            ]}
+                            className="w-96"
+                        />
+                        {/*<div className="mb-4">*/}
+                        {/*    <label className="block font-medium text-sm">Assign Staff</label>*/}
+                        {/*    <select*/}
+                        {/*        name="assignedStaff"*/}
+                        {/*        value={assignedStaff}*/}
+                        {/*        onChange={(e) => setAssignedStaff(e.target.value)}*/}
+                        {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-96 text-[14px] border border-gray-300 mt-5"*/}
+                        {/*    >*/}
+                        {/*        <option value="C-1">Uchithma Senevirathne (C-1)</option>*/}
+                        {/*        <option value="C-2">Iman Adithya (C-2)</option>*/}
+                        {/*        <option value="C-3">John Doe (C-3)</option>*/}
+                        {/*        <option value="C-4">Jane Doe (C-4)</option>*/}
+                        {/*        <option value="C-5">July Doe (C-5)</option>*/}
+                        {/*        <option value="C-6">Saman Pereira (C-6)</option>*/}
+                        {/*    </select>*/}
+                        {/*</div>*/}
+
                         <div className="mb-4">
                             <div className="flex flex-col gap-3 justify-start">
                                 <h1 className="font-medium px-3">Crop Status</h1>
@@ -206,12 +267,15 @@ const LogPage: React.FC = ()=> {
                     </div>
                 </div>
                 <div>
-                    <button
-                        onClick={handleFormSubmit}
-                        className="bg-[#086568] text-white rounded-3xl py-2 px-5"
-                    >
+                    <Button onClick={handleFormSubmit}>
                         {editingLog ? 'Update Log' : 'Add Log'}
-                    </button>
+                    </Button>
+                    {/*<button*/}
+                    {/*    onClick={handleFormSubmit}*/}
+                    {/*    className="bg-[#086568] text-white rounded-3xl py-2 px-5"*/}
+                    {/*>*/}
+                    {/*    {editingLog ? 'Update Log' : 'Add Log'}*/}
+                    {/*</button>*/}
                 </div>
             </div>
 

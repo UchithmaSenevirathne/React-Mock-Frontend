@@ -5,6 +5,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 import {Vehicle} from "../models/Vehicle.ts";
 import {addVehicle, deleteVehicle, updateVehicle, setAlertType} from "../reducers/VehicleSlice.ts";
+import {FormField} from "../component/FormField.tsx";
+import {Button} from "../component/Button.tsx";
 
 const VehiclePage: React.FC = ()=> {
     const [licensePlateNo, setLicensePlateNo] = useState("");
@@ -75,29 +77,48 @@ const VehiclePage: React.FC = ()=> {
             {/* vehicle Form */}
             <div className="bg-white p-6 mb-6 flex flex-col gap-5">
                 <div className="flex gap-12 items-center">
-                    <div className="mb-4">
-                        <label className="block font-medium text-sm">License Plate No</label>
-                        <input
-                            type="text"
-                            name="licensePlateNo"
-                            placeholder="License Plate No"
-                            value={licensePlateNo}
-                            onChange={(e) => setLicensePlateNo(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block font-medium text-sm">Category</label>
-                        <select
-                            name="category"
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"
-                        >
-                            <option value="landmaster">Land Master</option>
-                            <option value="tractor">Tractor</option>
-                        </select>
-                    </div>
+                    <FormField
+                        label="License Plate No"
+                        type="text"
+                        value={licensePlateNo}
+                        onChange={setLicensePlateNo}
+                        placeholder="License Plate No"
+                        className="w-56"
+                    />
+                    {/*<div className="mb-4">*/}
+                    {/*    <label className="block font-medium text-sm">License Plate No</label>*/}
+                    {/*    <input*/}
+                    {/*        type="text"*/}
+                    {/*        name="licensePlateNo"*/}
+                    {/*        placeholder="License Plate No"*/}
+                    {/*        value={licensePlateNo}*/}
+                    {/*        onChange={(e) => setLicensePlateNo(e.target.value)}*/}
+                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
+                    {/*    />*/}
+                    {/*</div>*/}
+                    <FormField
+                        label="Category"
+                        type="select"
+                        value={category}
+                        onChange={setCategory}
+                        options={[
+                            { value: 'Land Master', label: 'Land Master' },
+                            { value: 'Tractor', label: 'Tractor' },
+                        ]}
+                        className="w-48"
+                    />
+                    {/*<div className="mb-4">*/}
+                    {/*    <label className="block font-medium text-sm">Category</label>*/}
+                    {/*    <select*/}
+                    {/*        name="category"*/}
+                    {/*        value={category}*/}
+                    {/*        onChange={(e) => setCategory(e.target.value)}*/}
+                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"*/}
+                    {/*    >*/}
+                    {/*        <option value="landmaster">Land Master</option>*/}
+                    {/*        <option value="tractor">Tractor</option>*/}
+                    {/*    </select>*/}
+                    {/*</div>*/}
                     <div className="mb-4">
                         <div className="flex flex-col gap-3 justify-start">
                             <h1 className="font-medium px-3">Fuel Type</h1>
@@ -125,18 +146,29 @@ const VehiclePage: React.FC = ()=> {
                             </div>
                         </div>
                     </div>
-                    <div className="mb-4">
-                        <label className="block font-medium text-sm">Status</label>
-                        <select
-                            name="status"
-                            value={status}
-                            onChange={(e) => setStatus(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"
-                        >
-                            <option value="available">Available</option>
-                            <option value="outOfService">Out of Service</option>
-                        </select>
-                    </div>
+                    <FormField
+                        label="Status"
+                        type="select"
+                        value={status}
+                        onChange={setStatus}
+                        options={[
+                            { value: 'Available', label: 'Available' },
+                            { value: 'Out of Service', label: 'Out of Service' },
+                        ]}
+                        className="w-48"
+                    />
+                    {/*<div className="mb-4">*/}
+                    {/*    <label className="block font-medium text-sm">Status</label>*/}
+                    {/*    <select*/}
+                    {/*        name="status"*/}
+                    {/*        value={status}*/}
+                    {/*        onChange={(e) => setStatus(e.target.value)}*/}
+                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"*/}
+                    {/*    >*/}
+                    {/*        <option value="available">Available</option>*/}
+                    {/*        <option value="outOfService">Out of Service</option>*/}
+                    {/*    </select>*/}
+                    {/*</div>*/}
                     <div className="mb-4">
                         <label className="block font-medium text-sm">Remarks</label>
                         <textarea
@@ -147,25 +179,42 @@ const VehiclePage: React.FC = ()=> {
                             className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-[230px] text-[14px] border border-gray-300 mt-5">
                         </textarea>
                     </div>
-                    <div className="mb-4">
-                        <label className="block font-medium text-sm">Assigned Staff</label>
-                        <input
-                            type="text"
-                            name="assignedStaff"
-                            placeholder="Assigned Staff"
-                            value={assignedStaff}
-                            onChange={(e) => setAssignedStaff(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-52 text-[14px] border border-gray-300 mt-5"
-                        />
-                    </div>
+                    <FormField
+                        label="Assigned Staff"
+                        type="select"
+                        value={assignedStaff}
+                        onChange={setAssignedStaff}
+                        options={[
+                            { value: 'Uchithma Senevirathne (C-1)', label: 'Uchithma Senevirathne (C-1)' },
+                            { value: 'Iman Adithya (C-2)', label: 'Iman Adithya (C-2)' },
+                            { value: 'John Doe (C-3)', label: 'John Doe (C-3)' },
+                            { value: 'Jane Doe (C-4)', label: 'Jane Doe (C-4)' },
+                            { value: 'July Doe (C-5)', label: 'July Doe (C-5)' }
+                        ]}
+                        className="w-60"
+                    />
+                    {/*<div className="mb-4">*/}
+                    {/*    <label className="block font-medium text-sm">Assigned Staff</label>*/}
+                    {/*    <input*/}
+                    {/*        type="text"*/}
+                    {/*        name="assignedStaff"*/}
+                    {/*        placeholder="Assigned Staff"*/}
+                    {/*        value={assignedStaff}*/}
+                    {/*        onChange={(e) => setAssignedStaff(e.target.value)}*/}
+                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-52 text-[14px] border border-gray-300 mt-5"*/}
+                    {/*    />*/}
+                    {/*</div>*/}
                 </div>
                 <div>
-                    <button
-                        onClick={handleFormSubmit}
-                        className="bg-[#086568] text-white rounded-3xl py-2 px-5"
-                    >
+                    <Button onClick={handleFormSubmit}>
                         {editingVehicle ? 'Update Vehicle' : 'Add Vehicle'}
-                    </button>
+                    </Button>
+                    {/*<button*/}
+                    {/*    onClick={handleFormSubmit}*/}
+                    {/*    className="bg-[#086568] text-white rounded-3xl py-2 px-5"*/}
+                    {/*>*/}
+                    {/*    {editingVehicle ? 'Update Vehicle' : 'Add Vehicle'}*/}
+                    {/*</button>*/}
                 </div>
             </div>
 

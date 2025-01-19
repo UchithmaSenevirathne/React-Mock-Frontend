@@ -5,6 +5,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 import {Equipment} from "../models/Equipment.ts";
 import {addEquipment, deleteEquipment, updateEquipment, setAlertType} from "../reducers/EquipmentSlice.ts";
+import {FormField} from "../component/FormField.tsx";
+import {Button} from "../component/Button.tsx";
 
 const EquipmentPage: React.FC = ()=> {
     const [equipmentName, setEquipmentName] = useState("");
@@ -71,17 +73,25 @@ const EquipmentPage: React.FC = ()=> {
             {/* Crop Form */}
             <div className="bg-white p-6 mb-6 flex flex-col gap-5">
                 <div className="flex gap-12 items-center">
-                    <div className="mb-4">
-                        <label className="block font-medium text-sm">Equipment Name</label>
-                        <input
-                            type="text"
-                            name="equipmentName"
-                            placeholder="Equipment Name"
-                            value={equipmentName}
-                            onChange={(e) => setEquipmentName(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"
-                        />
-                    </div>
+                    <FormField
+                        label="Equipment Name"
+                        type="text"
+                        value={equipmentName}
+                        onChange={setEquipmentName}
+                        placeholder="Equipment Name"
+                        className="w-56"
+                    />
+                    {/*<div className="mb-4">*/}
+                    {/*    <label className="block font-medium text-sm">Equipment Name</label>*/}
+                    {/*    <input*/}
+                    {/*        type="text"*/}
+                    {/*        name="equipmentName"*/}
+                    {/*        placeholder="Equipment Name"*/}
+                    {/*        value={equipmentName}*/}
+                    {/*        onChange={(e) => setEquipmentName(e.target.value)}*/}
+                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
+                    {/*    />*/}
+                    {/*</div>*/}
                     <div className="mb-4">
                         <div className="flex flex-col gap-3 justify-start">
                             <h1 className="font-medium px-3">Equipment Type</h1>
@@ -109,55 +119,103 @@ const EquipmentPage: React.FC = ()=> {
                             </div>
                         </div>
                     </div>
-                    <div className="mb-4">
-                        <label className="block font-medium text-sm">Status</label>
-                        <select
-                            name="status"
-                            value={status}
-                            onChange={(e) => setStatus(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"
-                        >
-                            <option value="available">Available</option>
-                            <option value="outOfService">Out of Service</option>
-                        </select>
-                    </div>
-                    <div className="mb-4">
-                        <label className="block font-medium text-sm">Assign Field</label>
-                        <select
-                            name="assignedField"
-                            value={assignedField}
-                            onChange={(e) => setAssignedField(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"
-                        >
-                            <option value="ricePalateA">Rice Palate A</option>
-                            <option value="ricePalateB">Rice Palate B</option>
-                            <option value="ricePalateC">Rice Palate C</option>
-                            <option value="cowpeaPalateA">Cowpea Palate A</option>
-                            <option value="cowpeaPalateB">Cowpea Palate B</option>
-                            <option value="cornPalate">Corn Palate</option>
-                            <option value="mixPalateA">Mix Palate A</option>
-                            <option value="mixPalateB">Mix Palate B</option>
-                        </select>
-                    </div>
-                    <div className="mb-4">
-                        <label className="block font-medium text-sm">Assigned Staff</label>
-                        <input
-                            type="text"
-                            name="assignedStaff"
-                            placeholder="Assigned Staff"
-                            value={assignedStaff}
-                            onChange={(e) => setAssignedStaff(e.target.value)}
-                            className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-52 text-[14px] border border-gray-300 mt-5"
-                        />
-                    </div>
+                    <FormField
+                        label="Status"
+                        type="select"
+                        value={status}
+                        onChange={setStatus}
+                        options={[
+                            { value: 'Available', label: 'Available' },
+                            { value: 'Out of Service', label: 'Out of Service' },
+                        ]}
+                        className="w-48"
+                    />
+                    {/*<div className="mb-4">*/}
+                    {/*    <label className="block font-medium text-sm">Status</label>*/}
+                    {/*    <select*/}
+                    {/*        name="status"*/}
+                    {/*        value={status}*/}
+                    {/*        onChange={(e) => setStatus(e.target.value)}*/}
+                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"*/}
+                    {/*    >*/}
+                    {/*        <option value="available">Available</option>*/}
+                    {/*        <option value="outOfService">Out of Service</option>*/}
+                    {/*    </select>*/}
+                    {/*</div>*/}
+                    <FormField
+                        label="Assign Field"
+                        type="select"
+                        value={assignedField}
+                        onChange={setAssignedField}
+                        options={[
+                            { value: 'Rice Palate A', label: 'Rice Palate A' },
+                            { value: 'Rice Palate B', label: 'Rice Palate B' },
+                            { value: 'Rice Palate C', label: 'Rice Palate C' },
+                            { value: 'Cowpea Palate A', label: 'Cowpea Palate A' },
+                            { value: 'Cowpea Palate B', label: 'Cowpea Palate B' },
+                            { value: 'Corn Palate', label: 'Corn Palate' },
+                            { value: 'Mix Palate A', label: 'Mix Palate A' },
+                            { value: 'Mix Palate B', label: 'Mix Palate B' }
+                            // ... other options
+                        ]}
+                        className="w-56"
+                    />
+
+                    {/*<div className="mb-4">*/}
+                    {/*    <label className="block font-medium text-sm">Assign Field</label>*/}
+                    {/*    <select*/}
+                    {/*        name="assignedField"*/}
+                    {/*        value={assignedField}*/}
+                    {/*        onChange={(e) => setAssignedField(e.target.value)}*/}
+                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
+                    {/*    >*/}
+                    {/*        <option value="ricePalateA">Rice Palate A</option>*/}
+                    {/*        <option value="ricePalateB">Rice Palate B</option>*/}
+                    {/*        <option value="ricePalateC">Rice Palate C</option>*/}
+                    {/*        <option value="cowpeaPalateA">Cowpea Palate A</option>*/}
+                    {/*        <option value="cowpeaPalateB">Cowpea Palate B</option>*/}
+                    {/*        <option value="cornPalate">Corn Palate</option>*/}
+                    {/*        <option value="mixPalateA">Mix Palate A</option>*/}
+                    {/*        <option value="mixPalateB">Mix Palate B</option>*/}
+                    {/*    </select>*/}
+                    {/*</div>*/}
+
+                    <FormField
+                        label="Assigned Staff"
+                        type="select"
+                        value={assignedStaff}
+                        onChange={setAssignedStaff}
+                        options={[
+                            { value: 'Uchithma Senevirathne (C-1)', label: 'Uchithma Senevirathne (C-1)' },
+                            { value: 'Iman Adithya (C-2)', label: 'Iman Adithya (C-2)' },
+                            { value: 'John Doe (C-3)', label: 'John Doe (C-3)' },
+                            { value: 'Jane Doe (C-4)', label: 'Jane Doe (C-4)' },
+                            { value: 'July Doe (C-5)', label: 'July Doe (C-5)' }
+                        ]}
+                        className="w-96"
+                    />
+                    {/*<div className="mb-4">*/}
+                    {/*    <label className="block font-medium text-sm">Assigned Staff</label>*/}
+                    {/*    <input*/}
+                    {/*        type="text"*/}
+                    {/*        name="assignedStaff"*/}
+                    {/*        placeholder="Assigned Staff"*/}
+                    {/*        value={assignedStaff}*/}
+                    {/*        onChange={(e) => setAssignedStaff(e.target.value)}*/}
+                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-52 text-[14px] border border-gray-300 mt-5"*/}
+                    {/*    />*/}
+                    {/*</div>*/}
                 </div>
                 <div>
-                    <button
-                        onClick={handleFormSubmit}
-                        className="bg-[#086568] text-white rounded-3xl py-2 px-5"
-                    >
+                    <Button onClick={handleFormSubmit}>
                         {editingEquipment ? 'Update Equipment' : 'Add Equipment'}
-                    </button>
+                    </Button>
+                    {/*<button*/}
+                    {/*    onClick={handleFormSubmit}*/}
+                    {/*    className="bg-[#086568] text-white rounded-3xl py-2 px-5"*/}
+                    {/*>*/}
+                    {/*    {editingEquipment ? 'Update Equipment' : 'Add Equipment'}*/}
+                    {/*</button>*/}
                 </div>
             </div>
 

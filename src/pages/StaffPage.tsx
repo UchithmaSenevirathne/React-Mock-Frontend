@@ -5,6 +5,8 @@ import {Staff} from "../models/Staff.ts";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
 import {addStaff, updateStaff, setAlertType, deleteStaff} from "../reducers/StaffSlice.ts";
+import {FormField} from "../component/FormField.tsx";
+import {Button} from "../component/Button.tsx";
 
 const StaffPage: React.FC = ()=> {
     const [fullName, setFullName] = useState("");
@@ -78,7 +80,7 @@ const StaffPage: React.FC = ()=> {
     };
 
     const handleDelete = (staffId: string) => {
-        dispatch(deleteStaff(staffId)); // Dispatch delete action
+        dispatch(deleteStaff(staffId));
         dispatch(setAlertType('Staff deleted successfully!'));
     };
 
@@ -88,32 +90,28 @@ const StaffPage: React.FC = ()=> {
             <div className="bg-white p-6 mb-6 flex flex-col gap-5">
                 <div className="flex flex-col gap-5 justify-center">
                     <div className="flex gap-12 items-center">
-                        <div className="mb-4">
-                            <label className="block font-medium text-sm">Full Name</label>
-                            <input
-                                type="text"
-                                name="fullName"
-                                placeholder="Full Name"
-                                value={fullName}
-                                onChange={(e) => setFullName(e.target.value)}
-                                className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-60 text-[14px] border border-gray-300 mt-5"
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block font-medium text-sm">Designation</label>
-                            <select
-                                name="designation"
-                                value={designation}
-                                onChange={(e) => setDesignation(e.target.value)}
-                                className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-60 text-[14px] border border-gray-300 mt-5"
-                            >
-                                <option value="Manager">Manager</option>
-                                <option value="HR">HR</option>
-                                <option value="Driver">Driver</option>
-                                <option value="Labour">Labour</option>
-                                <option value="Scientist">Scientist</option>
-                            </select>
-                        </div>
+                        <FormField
+                            label="Full Name"
+                            type="text"
+                            value={fullName}
+                            onChange={setFullName}
+                            placeholder="Full Name"
+                            className="w-60"
+                        />
+                        <FormField
+                            label="Designation"
+                            type="select"
+                            value={designation}
+                            onChange={setDesignation}
+                            options={[
+                                { value: 'Manager', label: 'Manager' },
+                                { value: 'HR', label: 'HR' },
+                                { value: 'Driver', label: 'Driver' },
+                                { value: 'Labour', label: 'Labour' },
+                                { value: 'Scientist', label: 'Scientist' }
+                            ]}
+                            className="w-60"
+                        />
                         <div className="mb-4">
                             <div className="flex flex-col gap-3 justify-start">
                                 <h1 className="font-medium px-3">Gender</h1>
@@ -141,86 +139,68 @@ const StaffPage: React.FC = ()=> {
                                 </div>
                             </div>
                         </div>
-                        <div className="mb-4">
-                            <label className="block font-medium text-sm">Joined Date</label>
-                            <input
-                                type="date"
-                                name="joinedDate"
-                                placeholder="Joined Date"
-                                value={joinedDate}
-                                onChange={(e) => setJoinedDate(e.target.value)}
-                                className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-60 text-[14px] border border-gray-300 mt-5"
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block font-medium text-sm">DOB</label>
-                            <input
-                                type="date"
-                                name="dob"
-                                placeholder="DOB"
-                                value={dob}
-                                onChange={(e) => setDob(e.target.value)}
-                                className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-60 text-[14px] border border-gray-300 mt-5"
-                            />
-                        </div>
+
+                        <FormField
+                            label="Joined Date"
+                            type="date"
+                            value={joinedDate}
+                            onChange={setJoinedDate}
+                            placeholder="Joined Date"
+                            className="w-60"
+                        />
+                        <FormField
+                            label="DOB"
+                            type="date"
+                            value={dob}
+                            onChange={setDob}
+                            placeholder="DOB"
+                            className="w-60"
+                        />
                     </div>
                     <div className="flex gap-10 items-center">
-                        <div className="mb-4">
-                            <label className="block font-medium text-sm">Address</label>
-                            <input
-                                type="text"
-                                name="address"
-                                placeholder="Address"
-                                value={address}
-                                onChange={(e) => setAddress(e.target.value)}
-                                className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-96 text-[14px] border border-gray-300 mt-5"
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block font-medium text-sm">Contact No</label>
-                            <input
-                                type="text"
-                                name="phone"
-                                placeholder="Contact No"
-                                value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
-                                className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block font-medium text-sm">Email</label>
-                            <input
-                                type="text"
-                                name="email"
-                                placeholder="Email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-96 text-[14px] border border-gray-300 mt-5"
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block font-medium text-sm">Role</label>
-                            <select
-                                name="role"
-                                value={role}
-                                onChange={(e) => setRole(e.target.value)}
-                                className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"
-                            >
-                                <option value="Manager">Manager</option>
-                                <option value="Administrative">Administrative</option>
-                                <option value="Scientist">Scientist</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
+                        <FormField
+                            label="Address"
+                            type="text"
+                            value={address}
+                            onChange={setAddress}
+                            placeholder="Address"
+                            className="w-96"
+                        />
+                        <FormField
+                            label="Contact No"
+                            type="text"
+                            value={phone}
+                            onChange={setPhone}
+                            placeholder="Contact No"
+                            className="w-56"
+                        />
+                        <FormField
+                            label="Email"
+                            type="text"
+                            value={email}
+                            onChange={setEmail}
+                            placeholder="Email"
+                            className="w-96"
+                        />
+                        <FormField
+                            label="Role"
+                            type="select"
+                            value={role}
+                            onChange={setRole}
+                            options={[
+                                { value: 'Manager', label: 'Manager' },
+                                { value: 'Administrative', label: 'Administrative' },
+                                { value: 'Scientist', label: 'Scientist' },
+                                { value: 'Other', label: 'Other' }
+                            ]}
+                            className="w-48"
+                        />
                     </div>
                     </div>
                     <div>
-                        <button
-                            onClick={handleStaffSave}
-                            className="bg-[#086568] text-white rounded-3xl py-2 px-5"
-                        >
+                        <Button onClick={handleStaffSave}>
                             {editingStaff ? 'Update Staff' : 'Add Staff'}
-                        </button>
+                        </Button>
                     </div>
                 </div>
 
@@ -286,3 +266,113 @@ const StaffPage: React.FC = ()=> {
 }
 
 export default StaffPage;
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">Full Name</label>*/}
+{/*    <input*/}
+{/*        type="text"*/}
+{/*        name="fullName"*/}
+{/*        placeholder="Full Name"*/}
+{/*        value={fullName}*/}
+{/*        onChange={(e) => setFullName(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-60 text-[14px] border border-gray-300 mt-5"*/}
+{/*    />*/}
+{/*</div>*/}
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">Designation</label>*/}
+{/*    <select*/}
+{/*        name="designation"*/}
+{/*        value={designation}*/}
+{/*        onChange={(e) => setDesignation(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-60 text-[14px] border border-gray-300 mt-5"*/}
+{/*    >*/}
+{/*        <option value="Manager">Manager</option>*/}
+{/*        <option value="HR">HR</option>*/}
+{/*        <option value="Driver">Driver</option>*/}
+{/*        <option value="Labour">Labour</option>*/}
+{/*        <option value="Scientist">Scientist</option>*/}
+{/*    </select>*/}
+{/*</div>*/}
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">Joined Date</label>*/}
+{/*    <input*/}
+{/*        type="date"*/}
+{/*        name="joinedDate"*/}
+{/*        placeholder="Joined Date"*/}
+{/*        value={joinedDate}*/}
+{/*        onChange={(e) => setJoinedDate(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-60 text-[14px] border border-gray-300 mt-5"*/}
+{/*    />*/}
+{/*</div>*/}
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">DOB</label>*/}
+{/*    <input*/}
+{/*        type="date"*/}
+{/*        name="dob"*/}
+{/*        placeholder="DOB"*/}
+{/*        value={dob}*/}
+{/*        onChange={(e) => setDob(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-60 text-[14px] border border-gray-300 mt-5"*/}
+{/*    />*/}
+{/*</div>*/}
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">Address</label>*/}
+{/*    <input*/}
+{/*        type="text"*/}
+{/*        name="address"*/}
+{/*        placeholder="Address"*/}
+{/*        value={address}*/}
+{/*        onChange={(e) => setAddress(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-96 text-[14px] border border-gray-300 mt-5"*/}
+{/*    />*/}
+{/*</div>*/}
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">Contact No</label>*/}
+{/*    <input*/}
+{/*        type="text"*/}
+{/*        name="phone"*/}
+{/*        placeholder="Contact No"*/}
+{/*        value={phone}*/}
+{/*        onChange={(e) => setPhone(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
+{/*    />*/}
+{/*</div>*/}
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">Email</label>*/}
+{/*    <input*/}
+{/*        type="text"*/}
+{/*        name="email"*/}
+{/*        placeholder="Email"*/}
+{/*        value={email}*/}
+{/*        onChange={(e) => setEmail(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-96 text-[14px] border border-gray-300 mt-5"*/}
+{/*    />*/}
+{/*</div>*/}
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">Role</label>*/}
+{/*    <select*/}
+{/*        name="role"*/}
+{/*        value={role}*/}
+{/*        onChange={(e) => setRole(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"*/}
+{/*    >*/}
+{/*        <option value="Manager">Manager</option>*/}
+{/*        <option value="Administrative">Administrative</option>*/}
+{/*        <option value="Scientist">Scientist</option>*/}
+{/*        <option value="Other">Other</option>*/}
+{/*    </select>*/}
+{/*</div>*/}
+
+{/*<button*/}
+{/*    onClick={handleStaffSave}*/}
+{/*    className="bg-[#086568] text-white rounded-3xl py-2 px-5"*/}
+{/*>*/}
+{/*    {editingStaff ? 'Update Staff' : 'Add Staff'}*/}
+{/*</button>*/}
