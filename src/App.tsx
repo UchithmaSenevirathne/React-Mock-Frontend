@@ -37,7 +37,6 @@ function App() {
         {path: "/assign", element: <AssignFieldPage/>},
       ]
     },
-    // {path: "/logout", element: <Error/>}
   ])
 
   return (

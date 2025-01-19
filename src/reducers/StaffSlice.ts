@@ -28,7 +28,6 @@ const staffSlice = createSlice({
             }
         },
         deleteStaff: (state, action: PayloadAction<string>) => {
-            // Removing the field by its fieldCode
             state.staffs = state.staffs.filter((staff) => staff.staffId !== action.payload);
         },
         setAlertType: (state, action: PayloadAction<string>) => {

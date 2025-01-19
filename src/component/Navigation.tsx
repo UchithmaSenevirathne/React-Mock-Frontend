@@ -18,11 +18,10 @@ import palm from "../assets/images/palm.png";
 import "../pages/animation.css";
 
 export function Navigation() {
-    const location = useLocation(); // Get the current route
-    const [activeNav, setActiveNav] = useState("/dashboard"); // Default active nav
+    const location = useLocation();
+    const [activeNav, setActiveNav] = useState("/dashboard");
 
     useEffect(() => {
-        // Set the active nav based on the current route
         setActiveNav(location.pathname);
     }, [location.pathname]);
 
@@ -108,7 +107,6 @@ export function Navigation() {
                     </nav>
                 </aside>
             </header>
-            {/* Background animations */}
             <img src={leaf} alt="" className="absolute rotate-slow top-[5%] left-[2%]" />
             <img src={palm} alt="" className="absolute rotate-slow top-[15%] left-[8%]" />
             <img src={leaf} alt="" className="absolute rotate-slow top-[20%] left-[1%]" />

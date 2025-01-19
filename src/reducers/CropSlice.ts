@@ -28,7 +28,6 @@ const cropSlice = createSlice({
             }
         },
         deleteCrop: (state, action: PayloadAction<string>) => {
-            // Removing the field by its fieldCode
             state.crops = state.crops.filter((crop) => crop.cropCode !== action.payload);
         },
         setAlertType: (state, action: PayloadAction<string>) => {

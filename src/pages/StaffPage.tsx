@@ -25,7 +25,6 @@ const StaffPage: React.FC = ()=> {
 
     const handleStaffSave = () => {
         if (!fullName || !designation || !gender || !joinedDate || !dob || !address || !phone || !email || !role) {
-            // Check if all fields are filled
             alert("Please fill in all fields.");
             return;
         }
@@ -44,16 +43,13 @@ const StaffPage: React.FC = ()=> {
         );
 
         if (editingStaff) {
-            // Update the field if we are in editing mode
             dispatch(updateStaff(newStaff));
             dispatch(setAlertType('Staff updated successfully!'));
         } else {
-            // Add a new field if not editing
             dispatch(addStaff(newStaff));
             dispatch(setAlertType('Staff saved successfully!'));
         }
 
-        // Reset form fields after saving
         setFullName('');
         setDesignation('');
         setGender('');

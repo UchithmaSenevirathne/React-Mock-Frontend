@@ -20,13 +20,12 @@ const FieldPage: React.FC = () => {
 
     const handleImageUpload = (file: File | null, setFieldImage: React.Dispatch<React.SetStateAction<File | null>>) => {
         if (file) {
-            setFieldImage(file); // Set the file directly in state
+            setFieldImage(file);
         }
     };
 
     const handleSaveOrUpdateField = () => {
         if (!fieldName || !fieldLocation || !extentSize || !fieldImage1 || !fieldImage2) {
-            // Check if all fields are filled
             alert("Please fill in all fields and upload images.");
             return;
         }
@@ -69,7 +68,7 @@ const FieldPage: React.FC = () => {
     };
 
     const handleDelete = (fieldCode: string) => {
-        dispatch(deleteField(fieldCode)); // Dispatch delete action
+        dispatch(deleteField(fieldCode));
         dispatch(setAlertType('Field deleted successfully!'));
     };
 
@@ -92,7 +91,6 @@ const FieldPage: React.FC = () => {
                             { value: 'Corn Palate', label: 'Corn Palate' },
                             { value: 'Mix Palate A', label: 'Mix Palate A' },
                             { value: 'Mix Palate B', label: 'Mix Palate B' }
-                            // ... other options
                         ]}
                         className="w-[230px]"
                     />
@@ -162,7 +160,6 @@ const FieldPage: React.FC = () => {
                                 <img src={item.fieldImage2} className="w-16 h-16 rounded" alt="Field Image 2" />
                             )
                         },
-                        // ... other columns ...
                         { header: 'Actions', key: 'actions' }
                     ]}
                     onEdit={handleEdit}

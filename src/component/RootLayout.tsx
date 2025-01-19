@@ -1,6 +1,6 @@
 import {Navigation} from "./Navigation.tsx";
 import {Outlet} from "react-router";
-import { faBell as faRegularBell } from "@fortawesome/free-regular-svg-icons"; // Regular bell icon
+import { faBell as faRegularBell } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import '../index.css'
 

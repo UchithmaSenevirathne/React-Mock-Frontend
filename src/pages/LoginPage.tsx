@@ -11,12 +11,11 @@ const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault();
 
-        // Check localStorage for user data
         const storedUser = JSON.parse(localStorage.getItem('user') as string);
 
         if (storedUser && storedUser.email === email && storedUser.password === password) {
             alert('Login successful!');
-            navigate('/dashboard'); // Navigate to the dashboard
+            navigate('/dashboard');
         } else {
             alert('Invalid email or password. Please try again.');
         }

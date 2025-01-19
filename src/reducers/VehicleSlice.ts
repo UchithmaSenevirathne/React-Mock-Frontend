@@ -28,7 +28,6 @@ const vehicleSlice = createSlice({
             }
         },
         deleteVehicle: (state, action: PayloadAction<string>) => {
-            // Removing the field by its fieldCode
             state.vehicles = state.vehicles.filter((vehicle) => vehicle.vehicleID !== action.payload);
         },
         setAlertType: (state, action: PayloadAction<string>) => {

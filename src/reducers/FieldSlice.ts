@@ -28,7 +28,6 @@ const fieldSlice = createSlice({
             }
         },
         deleteField: (state, action: PayloadAction<string>) => {
-            // Removing the field by its fieldCode
             state.fields = state.fields.filter((field) => field.fieldCode !== action.payload);
         },
         setAlertType: (state, action: PayloadAction<string>) => {

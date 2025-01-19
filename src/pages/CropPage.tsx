@@ -3,8 +3,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
 import {Crop} from "../models/Crop.ts";
 import {addCrop, deleteCrop, updateCrop, setAlertType} from "../reducers/CropSlice.ts";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEdit, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 import cropImg from '../assets/images/crop.png'
 import {FormField} from "../component/FormField.tsx";
 import {Button} from "../component/Button.tsx";
@@ -24,13 +22,12 @@ const CropPage: React.FC = ()=> {
 
     const handleImageChange = (file: File | null, setCropImage: React.Dispatch<React.SetStateAction<File | null>>) => {
         if (file) {
-            setCropImage(file); // Set the file directly in state
+            setCropImage(file);
         }
     };
 
     const handleFormSubmit = () => {
         if (!cropCommonName || !cropScientificName || !category || !cropSeason || !fieldCode || !cropImage) {
-            // Check if all fields are filled
             alert("Please fill in all fields and upload images.");
             return;
         }
@@ -76,7 +73,7 @@ const CropPage: React.FC = ()=> {
     };
 
     const handleDelete = (cropCode: string) => {
-        dispatch(deleteCrop(cropCode)); // Dispatch delete action
+        dispatch(deleteCrop(cropCode));
         dispatch(setAlertType('Crop deleted successfully!'));
     };
 
@@ -98,7 +95,6 @@ const CropPage: React.FC = ()=> {
                                     { value: 'CN-34', label: 'CN-34' },
                                     { value: 'CA-45', label: 'CA-45' },
                                     { value: 'GM-12', label: 'GM-12' }
-                                    // ... other options
                                 ]}
                                 className="w-56"
                             />
@@ -121,7 +117,6 @@ const CropPage: React.FC = ()=> {
                                     { value: 'Corn', label: 'Corn' },
                                     { value: 'Cassava', label: 'Cassava' },
                                     { value: 'Green Gram', label: 'Green Gram' }
-                                    // ... other options
                                 ]}
                                 className="w-56"
                             />
@@ -141,7 +136,6 @@ const CropPage: React.FC = ()=> {
                                     { value: 'Corn Palate', label: 'Corn Palate' },
                                     { value: 'Mix Palate A', label: 'Mix Palate A' },
                                     { value: 'Mix Palate B', label: 'Mix Palate B' }
-                                    // ... other options
                                 ]}
                                 className="w-64"
                             />
@@ -182,7 +176,6 @@ const CropPage: React.FC = ()=> {
                     </div>
             </div>
 
-                {/* Crop List */}
                 <div className="bg-white p-6 rounded-lg shadow-md">
 
                     <Table
@@ -201,7 +194,6 @@ const CropPage: React.FC = ()=> {
                                     <img src={item.cropImage} className="w-16 h-16 rounded" alt="Image" />
                                 )
                             },
-                            // ... other columns ...
                             { header: 'Actions', key: 'actions' }
                         ]}
                         onEdit={handleEdit}

@@ -1,4 +1,3 @@
-/* Define Keyframes */
 @keyframes rotate {
     0% {
         transform: rotate(0deg);
@@ -8,7 +7,6 @@
     }
 }
 
-/* Create Animation Class */
 .rotate-slow {
     animation: rotate 4s linear infinite;
 }

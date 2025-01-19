@@ -21,7 +21,6 @@ const EquipmentPage: React.FC = ()=> {
 
     const handleFormSubmit = () => {
         if (!equipmentName || !equipmentType || !status || !assignedField || !assignedStaff) {
-            // Check if all fields are filled
             alert("Please fill in all fields.");
             return;
         }
@@ -36,16 +35,13 @@ const EquipmentPage: React.FC = ()=> {
         );
 
         if (editingEquipment) {
-            // Update the field if we are in editing mode
             dispatch(updateEquipment(newEquipment));
             dispatch(setAlertType('Equipment updated successfully!'));
         } else {
-            // Add a new field if not editing
             dispatch(addEquipment(newEquipment));
             dispatch(setAlertType('Equipment saved successfully!'));
         }
 
-        // Reset form fields after saving
         setEquipmentName('');
         setEquipmentType('');
         setStatus('');
@@ -64,7 +60,7 @@ const EquipmentPage: React.FC = ()=> {
     };
 
     const handleDelete = (equipmentID: string) => {
-        dispatch(deleteEquipment(equipmentID)); // Dispatch delete action
+        dispatch(deleteEquipment(equipmentID));
         dispatch(setAlertType('Equipment deleted successfully!'));
     };
 
@@ -81,17 +77,6 @@ const EquipmentPage: React.FC = ()=> {
                         placeholder="Equipment Name"
                         className="w-56"
                     />
-                    {/*<div className="mb-4">*/}
-                    {/*    <label className="block font-medium text-sm">Equipment Name</label>*/}
-                    {/*    <input*/}
-                    {/*        type="text"*/}
-                    {/*        name="equipmentName"*/}
-                    {/*        placeholder="Equipment Name"*/}
-                    {/*        value={equipmentName}*/}
-                    {/*        onChange={(e) => setEquipmentName(e.target.value)}*/}
-                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
-                    {/*    />*/}
-                    {/*</div>*/}
                     <div className="mb-4">
                         <div className="flex flex-col gap-3 justify-start">
                             <h1 className="font-medium px-3">Equipment Type</h1>
@@ -130,18 +115,6 @@ const EquipmentPage: React.FC = ()=> {
                         ]}
                         className="w-48"
                     />
-                    {/*<div className="mb-4">*/}
-                    {/*    <label className="block font-medium text-sm">Status</label>*/}
-                    {/*    <select*/}
-                    {/*        name="status"*/}
-                    {/*        value={status}*/}
-                    {/*        onChange={(e) => setStatus(e.target.value)}*/}
-                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"*/}
-                    {/*    >*/}
-                    {/*        <option value="available">Available</option>*/}
-                    {/*        <option value="outOfService">Out of Service</option>*/}
-                    {/*    </select>*/}
-                    {/*</div>*/}
                     <FormField
                         label="Assign Field"
                         type="select"
@@ -156,30 +129,9 @@ const EquipmentPage: React.FC = ()=> {
                             { value: 'Corn Palate', label: 'Corn Palate' },
                             { value: 'Mix Palate A', label: 'Mix Palate A' },
                             { value: 'Mix Palate B', label: 'Mix Palate B' }
-                            // ... other options
                         ]}
                         className="w-56"
                     />
-
-                    {/*<div className="mb-4">*/}
-                    {/*    <label className="block font-medium text-sm">Assign Field</label>*/}
-                    {/*    <select*/}
-                    {/*        name="assignedField"*/}
-                    {/*        value={assignedField}*/}
-                    {/*        onChange={(e) => setAssignedField(e.target.value)}*/}
-                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
-                    {/*    >*/}
-                    {/*        <option value="ricePalateA">Rice Palate A</option>*/}
-                    {/*        <option value="ricePalateB">Rice Palate B</option>*/}
-                    {/*        <option value="ricePalateC">Rice Palate C</option>*/}
-                    {/*        <option value="cowpeaPalateA">Cowpea Palate A</option>*/}
-                    {/*        <option value="cowpeaPalateB">Cowpea Palate B</option>*/}
-                    {/*        <option value="cornPalate">Corn Palate</option>*/}
-                    {/*        <option value="mixPalateA">Mix Palate A</option>*/}
-                    {/*        <option value="mixPalateB">Mix Palate B</option>*/}
-                    {/*    </select>*/}
-                    {/*</div>*/}
-
                     <FormField
                         label="Assigned Staff"
                         type="select"
@@ -194,28 +146,11 @@ const EquipmentPage: React.FC = ()=> {
                         ]}
                         className="w-96"
                     />
-                    {/*<div className="mb-4">*/}
-                    {/*    <label className="block font-medium text-sm">Assigned Staff</label>*/}
-                    {/*    <input*/}
-                    {/*        type="text"*/}
-                    {/*        name="assignedStaff"*/}
-                    {/*        placeholder="Assigned Staff"*/}
-                    {/*        value={assignedStaff}*/}
-                    {/*        onChange={(e) => setAssignedStaff(e.target.value)}*/}
-                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-52 text-[14px] border border-gray-300 mt-5"*/}
-                    {/*    />*/}
-                    {/*</div>*/}
                 </div>
                 <div>
                     <Button onClick={handleFormSubmit}>
                         {editingEquipment ? 'Update Equipment' : 'Add Equipment'}
                     </Button>
-                    {/*<button*/}
-                    {/*    onClick={handleFormSubmit}*/}
-                    {/*    className="bg-[#086568] text-white rounded-3xl py-2 px-5"*/}
-                    {/*>*/}
-                    {/*    {editingEquipment ? 'Update Equipment' : 'Add Equipment'}*/}
-                    {/*</button>*/}
                 </div>
             </div>
 
@@ -272,3 +207,67 @@ const EquipmentPage: React.FC = ()=> {
 }
 
 export default EquipmentPage;
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">Equipment Name</label>*/}
+{/*    <input*/}
+{/*        type="text"*/}
+{/*        name="equipmentName"*/}
+{/*        placeholder="Equipment Name"*/}
+{/*        value={equipmentName}*/}
+{/*        onChange={(e) => setEquipmentName(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
+{/*    />*/}
+{/*</div>*/}
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">Status</label>*/}
+{/*    <select*/}
+{/*        name="status"*/}
+{/*        value={status}*/}
+{/*        onChange={(e) => setStatus(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"*/}
+{/*    >*/}
+{/*        <option value="available">Available</option>*/}
+{/*        <option value="outOfService">Out of Service</option>*/}
+{/*    </select>*/}
+{/*</div>*/}
+
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">Assign Field</label>*/}
+{/*    <select*/}
+{/*        name="assignedField"*/}
+{/*        value={assignedField}*/}
+{/*        onChange={(e) => setAssignedField(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
+{/*    >*/}
+{/*        <option value="ricePalateA">Rice Palate A</option>*/}
+{/*        <option value="ricePalateB">Rice Palate B</option>*/}
+{/*        <option value="ricePalateC">Rice Palate C</option>*/}
+{/*        <option value="cowpeaPalateA">Cowpea Palate A</option>*/}
+{/*        <option value="cowpeaPalateB">Cowpea Palate B</option>*/}
+{/*        <option value="cornPalate">Corn Palate</option>*/}
+{/*        <option value="mixPalateA">Mix Palate A</option>*/}
+{/*        <option value="mixPalateB">Mix Palate B</option>*/}
+{/*    </select>*/}
+{/*</div>*/}
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">Assigned Staff</label>*/}
+{/*    <input*/}
+{/*        type="text"*/}
+{/*        name="assignedStaff"*/}
+{/*        placeholder="Assigned Staff"*/}
+{/*        value={assignedStaff}*/}
+{/*        onChange={(e) => setAssignedStaff(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-52 text-[14px] border border-gray-300 mt-5"*/}
+{/*    />*/}
+{/*</div>*/}
+
+{/*<button*/}
+{/*    onClick={handleFormSubmit}*/}
+{/*    className="bg-[#086568] text-white rounded-3xl py-2 px-5"*/}
+{/*>*/}
+{/*    {editingEquipment ? 'Update Equipment' : 'Add Equipment'}*/}
+{/*</button>*/}

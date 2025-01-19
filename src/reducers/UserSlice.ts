@@ -16,7 +16,7 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         registerUser: (state, action: PayloadAction<User>) => {
-            state.user.push(action.payload); // Add new user to the state
+            state.user.push(action.payload);
         },
     },
 });

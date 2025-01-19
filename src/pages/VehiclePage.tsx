@@ -22,7 +22,6 @@ const VehiclePage: React.FC = ()=> {
 
     const handleFormSubmit = () => {
         if (!licensePlateNo || !category || !fuelType || !status || !remarks || !assignedStaff) {
-            // Check if all fields are filled
             alert("Please fill in all fields.");
             return;
         }
@@ -38,16 +37,13 @@ const VehiclePage: React.FC = ()=> {
         );
 
         if (editingVehicle) {
-            // Update the field if we are in editing mode
             dispatch(updateVehicle(newVehicle));
             dispatch(setAlertType('Vehicle updated successfully!'));
         } else {
-            // Add a new field if not editing
             dispatch(addVehicle(newVehicle));
             dispatch(setAlertType('Vehicle saved successfully!'));
         }
 
-        // Reset form fields after saving
         setLicensePlateNo('');
         setCategory('');
         setFuelType('');
@@ -68,7 +64,7 @@ const VehiclePage: React.FC = ()=> {
     };
 
     const handleDelete = (vehicleID: string) => {
-        dispatch(deleteVehicle(vehicleID)); // Dispatch delete action
+        dispatch(deleteVehicle(vehicleID));
         dispatch(setAlertType('Vehicle deleted successfully!'));
     };
 
@@ -85,17 +81,6 @@ const VehiclePage: React.FC = ()=> {
                         placeholder="License Plate No"
                         className="w-56"
                     />
-                    {/*<div className="mb-4">*/}
-                    {/*    <label className="block font-medium text-sm">License Plate No</label>*/}
-                    {/*    <input*/}
-                    {/*        type="text"*/}
-                    {/*        name="licensePlateNo"*/}
-                    {/*        placeholder="License Plate No"*/}
-                    {/*        value={licensePlateNo}*/}
-                    {/*        onChange={(e) => setLicensePlateNo(e.target.value)}*/}
-                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
-                    {/*    />*/}
-                    {/*</div>*/}
                     <FormField
                         label="Category"
                         type="select"
@@ -107,18 +92,6 @@ const VehiclePage: React.FC = ()=> {
                         ]}
                         className="w-48"
                     />
-                    {/*<div className="mb-4">*/}
-                    {/*    <label className="block font-medium text-sm">Category</label>*/}
-                    {/*    <select*/}
-                    {/*        name="category"*/}
-                    {/*        value={category}*/}
-                    {/*        onChange={(e) => setCategory(e.target.value)}*/}
-                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"*/}
-                    {/*    >*/}
-                    {/*        <option value="landmaster">Land Master</option>*/}
-                    {/*        <option value="tractor">Tractor</option>*/}
-                    {/*    </select>*/}
-                    {/*</div>*/}
                     <div className="mb-4">
                         <div className="flex flex-col gap-3 justify-start">
                             <h1 className="font-medium px-3">Fuel Type</h1>
@@ -157,18 +130,6 @@ const VehiclePage: React.FC = ()=> {
                         ]}
                         className="w-48"
                     />
-                    {/*<div className="mb-4">*/}
-                    {/*    <label className="block font-medium text-sm">Status</label>*/}
-                    {/*    <select*/}
-                    {/*        name="status"*/}
-                    {/*        value={status}*/}
-                    {/*        onChange={(e) => setStatus(e.target.value)}*/}
-                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"*/}
-                    {/*    >*/}
-                    {/*        <option value="available">Available</option>*/}
-                    {/*        <option value="outOfService">Out of Service</option>*/}
-                    {/*    </select>*/}
-                    {/*</div>*/}
                     <div className="mb-4">
                         <label className="block font-medium text-sm">Remarks</label>
                         <textarea
@@ -193,28 +154,11 @@ const VehiclePage: React.FC = ()=> {
                         ]}
                         className="w-60"
                     />
-                    {/*<div className="mb-4">*/}
-                    {/*    <label className="block font-medium text-sm">Assigned Staff</label>*/}
-                    {/*    <input*/}
-                    {/*        type="text"*/}
-                    {/*        name="assignedStaff"*/}
-                    {/*        placeholder="Assigned Staff"*/}
-                    {/*        value={assignedStaff}*/}
-                    {/*        onChange={(e) => setAssignedStaff(e.target.value)}*/}
-                    {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-52 text-[14px] border border-gray-300 mt-5"*/}
-                    {/*    />*/}
-                    {/*</div>*/}
                 </div>
                 <div>
                     <Button onClick={handleFormSubmit}>
                         {editingVehicle ? 'Update Vehicle' : 'Add Vehicle'}
                     </Button>
-                    {/*<button*/}
-                    {/*    onClick={handleFormSubmit}*/}
-                    {/*    className="bg-[#086568] text-white rounded-3xl py-2 px-5"*/}
-                    {/*>*/}
-                    {/*    {editingVehicle ? 'Update Vehicle' : 'Add Vehicle'}*/}
-                    {/*</button>*/}
                 </div>
             </div>
 
@@ -272,3 +216,60 @@ const VehiclePage: React.FC = ()=> {
 }
 
 export default VehiclePage;
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">License Plate No</label>*/}
+{/*    <input*/}
+{/*        type="text"*/}
+{/*        name="licensePlateNo"*/}
+{/*        placeholder="License Plate No"*/}
+{/*        value={licensePlateNo}*/}
+{/*        onChange={(e) => setLicensePlateNo(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
+{/*    />*/}
+{/*</div>*/}
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">Category</label>*/}
+{/*    <select*/}
+{/*        name="category"*/}
+{/*        value={category}*/}
+{/*        onChange={(e) => setCategory(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"*/}
+{/*    >*/}
+{/*        <option value="landmaster">Land Master</option>*/}
+{/*        <option value="tractor">Tractor</option>*/}
+{/*    </select>*/}
+{/*</div>*/}
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">Status</label>*/}
+{/*    <select*/}
+{/*        name="status"*/}
+{/*        value={status}*/}
+{/*        onChange={(e) => setStatus(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-48 text-[14px] border border-gray-300 mt-5"*/}
+{/*    >*/}
+{/*        <option value="available">Available</option>*/}
+{/*        <option value="outOfService">Out of Service</option>*/}
+{/*    </select>*/}
+{/*</div>*/}
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">Assigned Staff</label>*/}
+{/*    <input*/}
+{/*        type="text"*/}
+{/*        name="assignedStaff"*/}
+{/*        placeholder="Assigned Staff"*/}
+{/*        value={assignedStaff}*/}
+{/*        onChange={(e) => setAssignedStaff(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-52 text-[14px] border border-gray-300 mt-5"*/}
+{/*    />*/}
+{/*</div>*/}
+
+{/*<button*/}
+{/*    onClick={handleFormSubmit}*/}
+{/*    className="bg-[#086568] text-white rounded-3xl py-2 px-5"*/}
+{/*>*/}
+{/*    {editingVehicle ? 'Update Vehicle' : 'Add Vehicle'}*/}
+{/*</button>*/}

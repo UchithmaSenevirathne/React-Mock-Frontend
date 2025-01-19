@@ -17,13 +17,11 @@ const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Validate passwords
         if (password !== repassword) {
             alert('Passwords do not match!');
             return;
         }
 
-        // Save user in localStorage
         const userData = { email, password };
         localStorage.setItem('user', JSON.stringify(userData));
 
@@ -32,11 +30,10 @@ const Register = () => {
             password,
         )
 
-        // Dispatch action to Redux
         dispatch(registerUser(newUser));
 
         alert('Registration successful! Redirecting to login page...');
-        navigate('/'); // Redirect to login page
+        navigate('/');
     };
 
     return (

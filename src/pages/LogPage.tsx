@@ -24,13 +24,12 @@ const LogPage: React.FC = ()=> {
 
     const handleImageChange = (file: File | null, setObservedImage: React.Dispatch<React.SetStateAction<File | null>>) => {
         if (file) {
-            setObservedImage(file); // Set the file directly in state
+            setObservedImage(file);
         }
     };
 
     const handleFormSubmit = () => {
         if (!logDate || !logDetails || !observedImage || !assignedCrop || !assignedField || !assignedStaff || !cropStatus) {
-            // Check if all fields are filled
             alert("Please fill in all fields and upload images.");
             return;
         }
@@ -47,16 +46,13 @@ const LogPage: React.FC = ()=> {
         );
 
         if (editingLog) {
-            // Update the field if we are in editing mode
             dispatch(updateLog(newLog));
             dispatch(setAlertType('Log updated successfully!'));
         } else {
-            // Add a new field if not editing
             dispatch(addLog(newLog));
             dispatch(setAlertType('Log saved successfully!'));
         }
 
-        // Reset form fields after saving
         setLogDate('');
         setLogDetails('');
         setObservedImage(null);
@@ -77,7 +73,7 @@ const LogPage: React.FC = ()=> {
     };
 
     const handleDelete = (logCode: string) => {
-        dispatch(deleteLog(logCode)); // Dispatch delete action
+        dispatch(deleteLog(logCode));
         dispatch(setAlertType('Log deleted successfully!'));
     };
 
@@ -95,17 +91,6 @@ const LogPage: React.FC = ()=> {
                             placeholder="Log Date"
                             className="w-56"
                         />
-                        {/*<div className="mb-4">*/}
-                        {/*    <label className="block font-medium text-sm">Log Date</label>*/}
-                        {/*    <input*/}
-                        {/*        type="date"*/}
-                        {/*        name="logDate"*/}
-                        {/*        placeholder="Log Date"*/}
-                        {/*        value={logDate}*/}
-                        {/*        onChange={(e) => setLogDate(e.target.value)}*/}
-                        {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
-                        {/*    />*/}
-                        {/*</div>*/}
                         <div className="mb-4">
                             <label className="block font-medium text-sm">Log Details</label>
                             <textarea
@@ -138,26 +123,9 @@ const LogPage: React.FC = ()=> {
                                 { value: 'CN-34', label: 'CN-34' },
                                 { value: 'CA-45', label: 'CA-45' },
                                 { value: 'GM-12', label: 'GM-12' }
-                                // ... other options
                             ]}
                             className="w-56"
                         />
-                        {/*<div className="mb-4">*/}
-                        {/*    <label className="block font-medium text-sm">Assign Crop</label>*/}
-                        {/*    <select*/}
-                        {/*        name="assignedCrop"*/}
-                        {/*        value={assignedCrop}*/}
-                        {/*        onChange={(e) => setAssignedCrop(e.target.value)}*/}
-                        {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
-                        {/*    >*/}
-                        {/*        <option value="bg-24">BG-24</option>*/}
-                        {/*        <option value="cp-23">CP-23</option>*/}
-                        {/*        <option value="cn-34">CN-34</option>*/}
-                        {/*        <option value="ca-45">CA-45</option>*/}
-                        {/*        <option value="gm-12">GM-12</option>*/}
-                        {/*    </select>*/}
-                        {/*</div>*/}
-
                         <FormField
                             label="Assign Field"
                             type="select"
@@ -172,29 +140,9 @@ const LogPage: React.FC = ()=> {
                                 { value: 'Corn Palate', label: 'Corn Palate' },
                                 { value: 'Mix Palate A', label: 'Mix Palate A' },
                                 { value: 'Mix Palate B', label: 'Mix Palate B' }
-                                // ... other options
                             ]}
                             className="w-56"
                         />
-                        {/*<div className="mb-4">*/}
-                        {/*    <label className="block font-medium text-sm">Assign Field</label>*/}
-                        {/*    <select*/}
-                        {/*        name="assignedField"*/}
-                        {/*        value={assignedField}*/}
-                        {/*        onChange={(e) => setAssignedField(e.target.value)}*/}
-                        {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
-                        {/*    >*/}
-                        {/*        <option value="ricePalateA">Rice Palate A</option>*/}
-                        {/*        <option value="ricePalateB">Rice Palate B</option>*/}
-                        {/*        <option value="ricePalateC">Rice Palate C</option>*/}
-                        {/*        <option value="cowpeaPalateA">Cowpea Palate A</option>*/}
-                        {/*        <option value="cowpeaPalateB">Cowpea Palate B</option>*/}
-                        {/*        <option value="cornPalate">Corn Palate</option>*/}
-                        {/*        <option value="mixPalateA">Mix Palate A</option>*/}
-                        {/*        <option value="mixPalateB">Mix Palate B</option>*/}
-                        {/*    </select>*/}
-                        {/*</div>*/}
-
                         <FormField
                             label="Assign Staff"
                             type="select"
@@ -206,27 +154,9 @@ const LogPage: React.FC = ()=> {
                                 { value: 'John Doe (C-3)', label: 'John Doe (C-3)' },
                                 { value: 'Jane Doe (C-4)', label: 'Jane Doe (C-4)' },
                                 { value: 'July Doe (C-5)', label: 'July Doe (C-5)' }
-                                // ... other options
                             ]}
                             className="w-96"
                         />
-                        {/*<div className="mb-4">*/}
-                        {/*    <label className="block font-medium text-sm">Assign Staff</label>*/}
-                        {/*    <select*/}
-                        {/*        name="assignedStaff"*/}
-                        {/*        value={assignedStaff}*/}
-                        {/*        onChange={(e) => setAssignedStaff(e.target.value)}*/}
-                        {/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-96 text-[14px] border border-gray-300 mt-5"*/}
-                        {/*    >*/}
-                        {/*        <option value="C-1">Uchithma Senevirathne (C-1)</option>*/}
-                        {/*        <option value="C-2">Iman Adithya (C-2)</option>*/}
-                        {/*        <option value="C-3">John Doe (C-3)</option>*/}
-                        {/*        <option value="C-4">Jane Doe (C-4)</option>*/}
-                        {/*        <option value="C-5">July Doe (C-5)</option>*/}
-                        {/*        <option value="C-6">Saman Pereira (C-6)</option>*/}
-                        {/*    </select>*/}
-                        {/*</div>*/}
-
                         <div className="mb-4">
                             <div className="flex flex-col gap-3 justify-start">
                                 <h1 className="font-medium px-3">Crop Status</h1>
@@ -270,12 +200,6 @@ const LogPage: React.FC = ()=> {
                     <Button onClick={handleFormSubmit}>
                         {editingLog ? 'Update Log' : 'Add Log'}
                     </Button>
-                    {/*<button*/}
-                    {/*    onClick={handleFormSubmit}*/}
-                    {/*    className="bg-[#086568] text-white rounded-3xl py-2 px-5"*/}
-                    {/*>*/}
-                    {/*    {editingLog ? 'Update Log' : 'Add Log'}*/}
-                    {/*</button>*/}
                 </div>
             </div>
 
@@ -347,3 +271,74 @@ const LogPage: React.FC = ()=> {
 }
 
 export default LogPage;
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">Log Date</label>*/}
+{/*    <input*/}
+{/*        type="date"*/}
+{/*        name="logDate"*/}
+{/*        placeholder="Log Date"*/}
+{/*        value={logDate}*/}
+{/*        onChange={(e) => setLogDate(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
+{/*    />*/}
+{/*</div>*/}
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">Assign Crop</label>*/}
+{/*    <select*/}
+{/*        name="assignedCrop"*/}
+{/*        value={assignedCrop}*/}
+{/*        onChange={(e) => setAssignedCrop(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
+{/*    >*/}
+{/*        <option value="bg-24">BG-24</option>*/}
+{/*        <option value="cp-23">CP-23</option>*/}
+{/*        <option value="cn-34">CN-34</option>*/}
+{/*        <option value="ca-45">CA-45</option>*/}
+{/*        <option value="gm-12">GM-12</option>*/}
+{/*    </select>*/}
+{/*</div>*/}
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">Assign Field</label>*/}
+{/*    <select*/}
+{/*        name="assignedField"*/}
+{/*        value={assignedField}*/}
+{/*        onChange={(e) => setAssignedField(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-56 text-[14px] border border-gray-300 mt-5"*/}
+{/*    >*/}
+{/*        <option value="ricePalateA">Rice Palate A</option>*/}
+{/*        <option value="ricePalateB">Rice Palate B</option>*/}
+{/*        <option value="ricePalateC">Rice Palate C</option>*/}
+{/*        <option value="cowpeaPalateA">Cowpea Palate A</option>*/}
+{/*        <option value="cowpeaPalateB">Cowpea Palate B</option>*/}
+{/*        <option value="cornPalate">Corn Palate</option>*/}
+{/*        <option value="mixPalateA">Mix Palate A</option>*/}
+{/*        <option value="mixPalateB">Mix Palate B</option>*/}
+{/*    </select>*/}
+{/*</div>*/}
+
+{/*<div className="mb-4">*/}
+{/*    <label className="block font-medium text-sm">Assign Staff</label>*/}
+{/*    <select*/}
+{/*        name="assignedStaff"*/}
+{/*        value={assignedStaff}*/}
+{/*        onChange={(e) => setAssignedStaff(e.target.value)}*/}
+{/*        className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-96 text-[14px] border border-gray-300 mt-5"*/}
+{/*    >*/}
+{/*        <option value="C-1">Uchithma Senevirathne (C-1)</option>*/}
+{/*        <option value="C-2">Iman Adithya (C-2)</option>*/}
+{/*        <option value="C-3">John Doe (C-3)</option>*/}
+{/*        <option value="C-4">Jane Doe (C-4)</option>*/}
+{/*        <option value="C-5">July Doe (C-5)</option>*/}
+{/*        <option value="C-6">Saman Pereira (C-6)</option>*/}
+{/*    </select>*/}
+{/*</div>*/}
+
+{/*<button*/}
+{/*    onClick={handleFormSubmit}*/}
+{/*    className="bg-[#086568] text-white rounded-3xl py-2 px-5"*/}
+{/*>*/}
+{/*    {editingLog ? 'Update Log' : 'Add Log'}*/}
+{/*</button>*/}
