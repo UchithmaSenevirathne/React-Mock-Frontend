@@ -152,14 +152,19 @@ const LogPage: React.FC = ()=> {
                         </div>
                         <div className="mb-4">
                             <label className="block font-medium text-sm">Assign Staff</label>
-                            <input
-                                type="text"
+                            <select
                                 name="assignedStaff"
-                                placeholder="Assigned Staff"
                                 value={assignedStaff}
                                 onChange={(e) => setAssignedStaff(e.target.value)}
-                                className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-52 text-[14px] border border-gray-300 mt-5"
-                            />
+                                className="bg-white rounded-3xl py-2 px-3 text-gray-600 w-96 text-[14px] border border-gray-300 mt-5"
+                            >
+                                <option value="C-1">Uchithma Senevirathne (C-1)</option>
+                                <option value="C-2">Iman Adithya (C-2)</option>
+                                <option value="C-3">John Doe (C-3)</option>
+                                <option value="C-4">Jane Doe (C-4)</option>
+                                <option value="C-5">July Doe (C-5)</option>
+                                <option value="C-6">Saman Pereira (C-6)</option>
+                            </select>
                         </div>
                         <div className="mb-4">
                             <div className="flex flex-col gap-3 justify-start">
